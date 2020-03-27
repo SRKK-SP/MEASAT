@@ -1,0 +1,426 @@
+﻿<script type="text/javascript" src="/sites/eCM/SiteAssets/js/jquery.SPServices-2014.02.min.js"></script>
+<script src="/sites/eCM/SiteAssets/ECM/JS/jquery.table2excel.js"></script>
+<script type="text/javascript">
+   $(document).ready(function () {
+      $("#customer").keypress(function (e) {
+         if (e.keyCode == 13) {
+            e.preventDefault ? e.preventDefault() : e.returnValue = false;
+            search();
+            return false;
+         }
+      });
+
+      // 
+      
+   });
+
+   function search() {
+      var list = "e-CM";
+      var plat = $("select[id='platform']").val();
+      var platArea = $("select[id='platformArea']").val();
+      var cust = $("input[id='customer']").val();
+      var dept = $("select[id='dept']").val();
+      var year = $("select[id='year']").val();
+      var myQuery;
+      if (plat == "Empty" && platArea == "Empty" && cust !== "" && dept == "Empty" && year == "Empty") {
+         myQuery = "<Query><Where><And><Eq><FieldRef Name='Customer' /><Value Type='Text'>" + cust +
+            "</Value></Eq><Neq><FieldRef Name='Workflow_x0020_Status' /><Value Type='Text'>NEW</Value></Neq></And></Where><OrderBy><FieldRef Name='Sort_x0020_column' Ascending='True' /></OrderBy></Query>";
+      } else if (plat == "Empty" && platArea !== "Empty" && cust == "" && dept == "Empty" && year == "Empty") {
+         myQuery = "<Query><Where><And><Eq><FieldRef Name='Area2' /><Value Type='Choice'>" + platArea +
+            "</Value></Eq><Neq><FieldRef Name='Workflow_x0020_Status' /><Value Type='Text'>NEW</Value></Neq></And></Where><OrderBy><FieldRef Name='Sort_x0020_column' Ascending='True' /></OrderBy></Query>";
+      } else if (plat !== "Empty" && platArea == "Empty" && cust == "" && dept == "Empty" && year == "Empty") {
+         myQuery = "<Query><Where><And><Eq><FieldRef Name='Type2' /><Value Type='Choice'>" + plat +
+            "</Value></Eq><Neq><FieldRef Name='Workflow_x0020_Status' /><Value Type='Text'>NEW</Value></Neq></And></Where><OrderBy><FieldRef Name='Sort_x0020_column' Ascending='True' /></OrderBy></Query>";
+      } else if (plat == "Empty" && platArea == "Empty" && cust == "" && dept !== "Empty" && year == "Empty") {
+         myQuery = "<Query><Where><And><Eq><FieldRef Name='Department' /><Value Type='Text'>" + dept +
+            "</Value></Eq><Neq><FieldRef Name='Workflow_x0020_Status' /><Value Type='Text'>NEW</Value></Neq></And></Where><OrderBy><FieldRef Name='Sort_x0020_column' Ascending='True' /></OrderBy></Query>";
+      } else if (plat == "Empty" && platArea == "Empty" && cust == "" && dept == "Empty" && year !== "Empty") {
+         myQuery = "<Query><Where><And><Eq><FieldRef Name='Year' /><Value Type='Number'>" + year +
+            "</Value></Eq><Neq><FieldRef Name='Workflow_x0020_Status' /><Value Type='Text'>NEW</Value></Neq></And></Where><OrderBy><FieldRef Name='Sort_x0020_column' Ascending='True' /></OrderBy></Query>";
+      } else if (plat !== "Empty" && platArea !== "Empty" && cust == "" && dept == "Empty" && year == "Empty") {
+         myQuery =
+            "<Query><Where><And><Neq><FieldRef Name='Workflow_x0020_Status' /><Value Type='Text'>NEW</Value></Neq>" +
+            "<And><Eq><FieldRef Name='Type2' /><Value Type='Choice'>" + plat + "</Value></Eq>" +
+            "<Eq><FieldRef Name='Area2' /><Value Type='Choice'>" + platArea +
+            "</Value></Eq></And></And></Where><OrderBy><FieldRef Name='Sort_x0020_column' Ascending='True' /></OrderBy></Query>";
+      } else if (plat !== "Empty" && platArea == "Empty" && cust !== "" && dept == "Empty" && year == "Empty") {
+         myQuery =
+            "<Query><Where><And><Neq><FieldRef Name='Workflow_x0020_Status' /><Value Type='Text'>NEW</Value></Neq>" +
+            "<And><Eq><FieldRef Name='Type2' /><Value Type='Choice'>" + plat + "</Value></Eq>" +
+            "<Eq><FieldRef Name='Customer' /><Value Type='Text'>" + cust +
+            "</Value></Eq></And></And></Where><OrderBy><FieldRef Name='Sort_x0020_column' Ascending='True' /></OrderBy></Query>";
+      } else if (plat !== "Empty" && platArea == "Empty" && cust == "" && dept !== "Empty" && year == "Empty") {
+         myQuery =
+            "<Query><Where><And><Neq><FieldRef Name='Workflow_x0020_Status' /><Value Type='Text'>NEW</Value></Neq>" +
+            "<And><Eq><FieldRef Name='Type2' /><Value Type='Choice'>" + plat + "</Value></Eq>" +
+            "<Eq><FieldRef Name='Department' /><Value Type='Text'>" + dept +
+            "</Value></Eq></And></And></Where><OrderBy><FieldRef Name='Sort_x0020_column' Ascending='True' /></OrderBy></Query>";
+      } else if (plat !== "Empty" && platArea == "Empty" && cust == "" && dept == "Empty" && year !== "Empty") {
+         myQuery =
+            "<Query><Where><And><Neq><FieldRef Name='Workflow_x0020_Status' /><Value Type='Text'>NEW</Value></Neq>" +
+            "<And><Eq><FieldRef Name='Type2' /><Value Type='Choice'>" + plat + "</Value></Eq>" +
+            "<Eq><FieldRef Name='Year' /><Value Type='Number'>" + year +
+            "</Value></Eq></And></And></Where><OrderBy><FieldRef Name='Sort_x0020_column' Ascending='True' /></OrderBy></Query>";
+      } else if (plat == "Empty" && platArea !== "Empty" && cust !== "" && dept == "Empty" && year == "Empty") {
+         myQuery =
+            "<Query><Where><And><Neq><FieldRef Name='Workflow_x0020_Status' /><Value Type='Text'>NEW</Value></Neq>" +
+            "<And><Eq><FieldRef Name='Area2' /><Value Type='Choice'>" + platArea + "</Value></Eq>" +
+            "<Eq><FieldRef Name='Customer' /><Value Type='Text'>" + cust +
+            "</Value></Eq></And></And></Where><OrderBy><FieldRef Name='Sort_x0020_column' Ascending='True' /></OrderBy></Query>";
+      } else if (plat == "Empty" && platArea !== "Empty" && cust == "" && dept !== "Empty" && year == "Empty") {
+         myQuery =
+            "<Query><Where><And><Neq><FieldRef Name='Workflow_x0020_Status' /><Value Type='Text'>NEW</Value></Neq>" +
+            "<And><Eq><FieldRef Name='Area2' /><Value Type='Choice'>" + platArea + "</Value></Eq>" +
+            "<Eq><FieldRef Name='Department' /><Value Type='Text'>" + dept +
+            "</Value></Eq></And></And></Where><OrderBy><FieldRef Name='Sort_x0020_column' Ascending='True' /></OrderBy></Query>";
+      } else if (plat == "Empty" && platArea !== "Empty" && cust == "" && dept == "Empty" && year !== "Empty") {
+         myQuery =
+            "<Query><Where><And><Neq><FieldRef Name='Workflow_x0020_Status' /><Value Type='Text'>NEW</Value></Neq>" +
+            "<And><Eq><FieldRef Name='Area2' /><Value Type='Choice'>" + platArea + "</Value></Eq>" +
+            "<Eq><FieldRef Name='Year' /><Value Type='Number'>" + year +
+            "</Value></Eq></And></And></Where><OrderBy><FieldRef Name='Sort_x0020_column' Ascending='True' /></OrderBy></Query>";
+      } else if (plat == "Empty" && platArea == "Empty" && cust !== "" && dept !== "Empty" && year == "Empty") {
+         myQuery =
+            "<Query><Where><And><Neq><FieldRef Name='Workflow_x0020_Status' /><Value Type='Text'>NEW</Value></Neq>" +
+            "<And><Eq><FieldRef Name='Customer' /><Value Type='Text'>" + cust + "</Value></Eq>" +
+            "<Eq><FieldRef Name='Department' /><Value Type='Text'>" + dept +
+            "</Value></Eq></And></And></Where><OrderBy><FieldRef Name='Sort_x0020_column' Ascending='True' /></OrderBy></Query>";
+      } else if (plat == "Empty" && platArea == "Empty" && cust !== "" && dept == "Empty" && year !== "Empty") {
+         myQuery =
+            "<Query><Where><And><Neq><FieldRef Name='Workflow_x0020_Status' /><Value Type='Text'>NEW</Value></Neq>" +
+            "<And><Eq><FieldRef Name='Customer' /><Value Type='Text'>" + cust + "</Value></Eq>" +
+            "<Eq><FieldRef Name='Year' /><Value Type='Number'>" + year +
+            "</Value></Eq></And></And></Where><OrderBy><FieldRef Name='Sort_x0020_column' Ascending='True' /></OrderBy></Query>";
+      } else if (plat == "Empty" && platArea == "Empty" && cust == "" && dept !== "Empty" && year !== "Empty") {
+         myQuery =
+            "<Query><Where><And><Neq><FieldRef Name='Workflow_x0020_Status' /><Value Type='Text'>NEW</Value></Neq>" +
+            "<And><Eq><FieldRef Name='Department' /><Value Type='Text'>" + dept + "</Value></Eq>" +
+            "<Eq><FieldRef Name='Year' /><Value Type='Number'>" + year +
+            "</Value></Eq></And></And></Where><OrderBy><FieldRef Name='Sort_x0020_column' Ascending='True' /></OrderBy></Query>";
+      } else if (plat !== "Empty" && platArea !== "Empty" && cust !== "" && dept == "Empty" && year == "Empty") {
+         myQuery = "<Query><Where><And>" +
+            "<And><Neq><FieldRef Name='Workflow_x0020_Status' /><Value Type='Text'>NEW</Value></Neq>" +
+            "<Eq><FieldRef Name='Type2' /><Value Type='Choice'>" + plat + "</Value></Eq>" +
+            "</And><And><Eq><FieldRef Name='Area2' /><Value Type='Choice'>" + platArea + "</Value></Eq>" +
+            "<Eq><FieldRef Name='Customer' /><Value Type='Text'>" + cust + "</Value></Eq></And>" +
+            "</And></Where><OrderBy><FieldRef Name='Sort_x0020_column' Ascending='True' /></OrderBy></Query>";
+      } else if (plat !== "Empty" && platArea !== "Empty" && cust == "" && dept !== "Empty" && year == "Empty") {
+         myQuery = "<Query><Where><And>" +
+            "<And><Neq><FieldRef Name='Workflow_x0020_Status' /><Value Type='Text'>NEW</Value></Neq>" +
+            "<Eq><FieldRef Name='Type2' /><Value Type='Choice'>" + plat + "</Value></Eq>" +
+            "</And><And><Eq><FieldRef Name='Area2' /><Value Type='Choice'>" + platArea + "</Value></Eq>" +
+            "<Eq><FieldRef Name='Department' /><Value Type='Text'>" + dept + "</Value></Eq></And>" +
+            "</And></Where><OrderBy><FieldRef Name='Sort_x0020_column' Ascending='True' /></OrderBy></Query>";
+      } else if (plat !== "Empty" && platArea !== "Empty" && cust == "" && dept == "Empty" && year !== "Empty") {
+         myQuery = "<Query><Where><And>" +
+            "<And><Neq><FieldRef Name='Workflow_x0020_Status' /><Value Type='Text'>NEW</Value></Neq>" +
+            "<Eq><FieldRef Name='Type2' /><Value Type='Choice'>" + plat + "</Value></Eq>" +
+            "</And><And><Eq><FieldRef Name='Area2' /><Value Type='Choice'>" + platArea + "</Value></Eq>" +
+            "<Eq><FieldRef Name='Year' /><Value Type='Number'>" + year + "</Value></Eq></And>" +
+            "</And></Where><OrderBy><FieldRef Name='Sort_x0020_column' Ascending='True' /></OrderBy></Query>";
+      } else if (plat == "Empty" && platArea !== "Empty" && cust !== "" && dept !== "Empty" && year == "Empty") {
+         myQuery = "<Query><Where><And>" +
+            "<And><Neq><FieldRef Name='Workflow_x0020_Status' /><Value Type='Text'>NEW</Value></Neq>" +
+            "<Eq><FieldRef Name='Department' /><Value Type='Text'>" + dept + "</Value></Eq>" +
+            "</And><And><Eq><FieldRef Name='Area2' /><Value Type='Choice'>" + platArea + "</Value></Eq>" +
+            "<Eq><FieldRef Name='Customer' /><Value Type='Text'>" + cust + "</Value></Eq></And>" +
+            "</And></Where><OrderBy><FieldRef Name='Sort_x0020_column' Ascending='True' /></OrderBy></Query>";
+      } else if (plat == "Empty" && platArea !== "Empty" && cust !== "" && dept == "Empty" && year !== "Empty") {
+         myQuery = "<Query><Where><And>" +
+            "<And><Neq><FieldRef Name='Workflow_x0020_Status' /><Value Type='Text'>NEW</Value></Neq>" +
+            "<Eq><FieldRef Name='Year' /><Value Type='Text'>" + year + "</Value></Eq>" +
+            "</And><And><Eq><FieldRef Name='Area2' /><Value Type='Choice'>" + platArea + "</Value></Eq>" +
+            "<Eq><FieldRef Name='Customer' /><Value Type='Number'>" + cust + "</Value></Eq></And>" +
+            "</And></Where><OrderBy><FieldRef Name='Sort_x0020_column' Ascending='True' /></OrderBy></Query>";
+      } else if (plat == "Empty" && platArea == "Empty" && cust !== "" && dept !== "Empty" && year !== "Empty") {
+         myQuery = "<Query><Where><And>" +
+            "<And><Neq><FieldRef Name='Workflow_x0020_Status' /><Value Type='Text'>NEW</Value></Neq>" +
+            "<Eq><FieldRef Name='Year' /><Value Type='Number'>" + year + "</Value></Eq>" +
+            "</And><And><Eq><FieldRef Name='Department' /><Value Type='Text'>" + dept + "</Value></Eq>" +
+            "<Eq><FieldRef Name='Customer' /><Value Type='Text'>" + cust + "</Value></Eq></And>" +
+            "</And></Where><OrderBy><FieldRef Name='Sort_x0020_column' Ascending='True' /></OrderBy></Query>";
+      } else if (plat !== "Empty" && platArea == "Empty" && cust !== "" && dept == "Empty" && year !== "Empty") {
+         myQuery = "<Query><Where><And>" +
+            "<And><Neq><FieldRef Name='Workflow_x0020_Status' /><Value Type='Text'>NEW</Value></Neq>" +
+            "<Eq><FieldRef Name='Type2' /><Value Type='Choice'>" + plat + "</Value></Eq>" +
+            "</And><And><Eq><FieldRef Name='Year' /><Value Type='Number'>" + year + "</Value></Eq>" +
+            "<Eq><FieldRef Name='Customer' /><Value Type='Text'>" + cust + "</Value></Eq></And>" +
+            "</And></Where><OrderBy><FieldRef Name='Sort_x0020_column' Ascending='True' /></OrderBy></Query>";
+      } else if (plat !== "Empty" && platArea == "Empty" && cust !== "" && dept !== "Empty" && year == "Empty") {
+         myQuery = "<Query><Where><And>" +
+            "<And><Neq><FieldRef Name='Workflow_x0020_Status' /><Value Type='Text'>NEW</Value></Neq>" +
+            "<Eq><FieldRef Name='Type2' /><Value Type='Choice'>" + plat + "</Value></Eq>" +
+            "</And><And><Eq><FieldRef Name='Department' /><Value Type='Text'>" + dept + "</Value></Eq>" +
+            "<Eq><FieldRef Name='Customer' /><Value Type='Text'>" + cust + "</Value></Eq></And>" +
+            "</And></Where><OrderBy><FieldRef Name='Sort_x0020_column' Ascending='True' /></OrderBy></Query>";
+      } else if (plat !== "Empty" && platArea == "Empty" && cust == "" && dept !== "Empty" && year !== "Empty") {
+         myQuery = "<Query><Where><And>" +
+            "<And><Neq><FieldRef Name='Workflow_x0020_Status' /><Value Type='Text'>NEW</Value></Neq>" +
+            "<Eq><FieldRef Name='Type2' /><Value Type='Choice'>" + plat + "</Value></Eq>" +
+            "</And><And><Eq><FieldRef Name='Department' /><Value Type='Text'>" + dept + "</Value></Eq>" +
+            "<Eq><FieldRef Name='Year' /><Value Type='Number'>" + year + "</Value></Eq></And>" +
+            "</And></Where><OrderBy><FieldRef Name='Sort_x0020_column' Ascending='True' /></OrderBy></Query>";
+      } else if (plat == "Empty" && platArea !== "Empty" && cust == "" && dept !== "Empty" && year !== "Empty") {
+         myQuery = "<Query><Where><And>" +
+            "<And><Neq><FieldRef Name='Workflow_x0020_Status' /><Value Type='Text'>NEW</Value></Neq>" +
+            "<Eq><FieldRef Name='Department' /><Value Type='Text'>" + dept + "</Value></Eq>" +
+            "</And><And><Eq><FieldRef Name='Area2' /><Value Type='Choice'>" + platArea + "</Value></Eq>" +
+            "<Eq><FieldRef Name='Year' /><Value Type='Number'>" + year + "</Value></Eq></And>" +
+            "</And></Where><OrderBy><FieldRef Name='Sort_x0020_column' Ascending='True' /></OrderBy></Query>";
+      } else if (plat !== "Empty" && platArea !== "Empty" && cust !== "" && dept !== "Empty" && year == "Empty") {
+         myQuery =
+            "<Query><Where><And><Neq><FieldRef Name='Workflow_x0020_Status' /><Value Type='Text'>NEW</Value></Neq>" +
+            "<And><Eq><FieldRef Name='Type2' /><Value Type='Choice'>" + plat + "</Value></Eq>" +
+            "<And><Eq><FieldRef Name='Area2' /><Value Type='Choice'>" + platArea + "</Value></Eq>" +
+            "<And><Eq><FieldRef Name='Customer' /><Value Type='Text'>" + cust + "</Value></Eq>" +
+            "<Eq><FieldRef Name='Department' /><Value Type='Text'>" + dept +
+            "</Value></Eq></And></And></And></And></Where><OrderBy><FieldRef Name='Sort_x0020_column' Ascending='True' /></OrderBy></Query>";
+      } else if (plat !== "Empty" && platArea !== "Empty" && cust !== "" && dept == "Empty" && year !== "Empty") {
+         myQuery =
+            "<Query><Where><And><Neq><FieldRef Name='Workflow_x0020_Status' /><Value Type='Text'>NEW</Value></Neq>" +
+            "<And><Eq><FieldRef Name='Type2' /><Value Type='Choice'>" + plat + "</Value></Eq>" +
+            "<And><Eq><FieldRef Name='Area2' /><Value Type='Choice'>" + platArea + "</Value></Eq>" +
+            "<And><Eq><FieldRef Name='Customer' /><Value Type='Text'>" + cust + "</Value></Eq>" +
+            "<Eq><FieldRef Name='Year' /><Value Type='Number'>" + year +
+            "</Value></Eq></And></And></And></And></Where><OrderBy><FieldRef Name='Sort_x0020_column' Ascending='True' /></OrderBy></Query>";
+      } else if (plat !== "Empty" && platArea !== "Empty" && cust == "" && dept !== "Empty" && year !== "Empty") {
+         myQuery =
+            "<Query><Where><And><Neq><FieldRef Name='Workflow_x0020_Status' /><Value Type='Text'>NEW</Value></Neq>" +
+            "<And><Eq><FieldRef Name='Type2' /><Value Type='Choice'>" + plat + "</Value></Eq>" +
+            "<And><Eq><FieldRef Name='Area2' /><Value Type='Choice'>" + platArea + "</Value></Eq>" +
+            "<And><Eq><FieldRef Name='Department' /><Value Type='Text'>" + dept + "</Value></Eq>" +
+            "<Eq><FieldRef Name='Year' /><Value Type='Number'>" + year +
+            "</Value></Eq></And></And></And></And></Where><OrderBy><FieldRef Name='Sort_x0020_column' Ascending='True' /></OrderBy></Query>";
+      } else if (plat !== "Empty" && platArea == "Empty" && cust !== "" && dept !== "Empty" && year !== "Empty") {
+         myQuery =
+            "<Query><Where><And><Neq><FieldRef Name='Workflow_x0020_Status' /><Value Type='Text'>NEW</Value></Neq>" +
+            "<And><Eq><FieldRef Name='Type2' /><Value Type='Choice'>" + plat + "</Value></Eq>" +
+            "<And><Eq><FieldRef Name='Customer' /><Value Type='Text'>" + cust + "</Value></Eq>" +
+            "<And><Eq><FieldRef Name='Department' /><Value Type='Text'>" + dept + "</Value></Eq>" +
+            "<Eq><FieldRef Name='Year' /><Value Type='Number'>" + year +
+            "</Value></Eq></And></And></And></And></Where><OrderBy><FieldRef Name='Sort_x0020_column' Ascending='True' /></OrderBy></Query>";
+      } else if (plat == "Empty" && platArea !== "Empty" && cust !== "" && dept !== "Empty" && year !== "Empty") {
+         myQuery =
+            "<Query><Where><And><Neq><FieldRef Name='Workflow_x0020_Status' /><Value Type='Text'>NEW</Value></Neq>" +
+            "<And><Eq><FieldRef Name='Department' /><Value Type='Text'>" + dept + "</Value></Eq>" +
+            "<And><Eq><FieldRef Name='Area2' /><Value Type='Choice'>" + platArea + "</Value></Eq>" +
+            "<And><Eq><FieldRef Name='Customer' /><Value Type='Text'>" + cust + "</Value></Eq>" +
+            "<Eq><FieldRef Name='Year' /><Value Type='Number'>" + year +
+            "</Value></Eq></And></And></And></And></Where><OrderBy><FieldRef Name='Sort_x0020_column' Ascending='True' /></OrderBy></Query>";
+      } else if (plat !== "Empty" && platArea !== "Empty" && cust !== "" && dept !== "Empty" && year !== "Empty") {
+         myQuery =
+            "<Query><Where><And><Neq><FieldRef Name='Workflow_x0020_Status' /><Value Type='Text'>NEW</Value></Neq>" +
+            "<And><Eq><FieldRef Name='Type2' /><Value Type='Choice'>" + plat + "</Value></Eq>" +
+            "<And><Eq><FieldRef Name='Area2' /><Value Type='Choice'>" + platArea + "</Value></Eq>" +
+            "<And><Eq><FieldRef Name='Customer' /><Value Type='Text'>" + cust + "</Value></Eq>" +
+            "<And><Eq><FieldRef Name='Department' /><Value Type='Text'>" + dept + "</Value></Eq>" +
+            "<Eq><FieldRef Name='Year' /><Value Type='Number'>" + year +
+            "</Value></Eq></And></And></And></And></And></Where><OrderBy><FieldRef Name='Sort_x0020_column' Ascending='True' /></OrderBy></Query>";
+      }
+
+      var sTable =
+         "<table><tr  style='font-weight:700;'><td style='width:75px;text-align:center'>REF</td><td style='width:75px;text-align:center'>Criticality</td><td style='width:300px'>Title</td><td style='width:150px;text-align:left'>Change Type</td><td style='padding-right:10px;width: 250px;text-align:left'>Requester Name</td><td style='width:150px;text-align:center'>Start Date</td><td style='width:100px;'>Status</td></tr>"
+      $().SPServices({
+         operation: "GetListItems",
+         async: false,
+         listName: "e-CM",
+         CAMLViewFields: "<ViewFields><FieldRef Name='ID' /><FieldRef Name='Title' /><FieldRef Name='REF' /><FieldRef Name='Criticality' />" +
+            "<FieldRef Name='Type_x0020_of_x0020_Change' /><FieldRef Name='Requester_x0020_Name' /><FieldRef Name='Start_x0020_Date' />" +
+            "<FieldRef Name='Workflow_x0020_Status' /></ViewFields>",
+         CAMLQuery: myQuery,
+         completefunc: function (xData, Status) {
+            console.log(myQuery);
+            $(xData.responseXML).SPFilterNode("z:row").each(function () {
+               console.log(this);
+               var itemTitle = $(this).attr("ows_Title");
+               var itemREF = $(this).attr("ows_REF");
+               var crit = $(this).attr("ows_Criticality");
+               var toc = $(this).attr("ows_Type_x0020_of_x0020_Change");
+               var reqName = $(this).attr("ows_Requester_x0020_Name");
+               reqName = reqName.split("#");
+               var startDate = $(this).attr("ows_Start_x0020_Date");
+               var status = $(this).attr("ows_Workflow_x0020_Status");
+               if (status != "NEW") sTable += "<tr><td style='text-align:center;'>" + itemREF + "</td><td>" + crit +
+                  "</td><td style='padding-right:20px;'><a href='https://measatsatellite.sharepoint.com/sites/ECM/Pages/DisplayForm.aspx?ID=" +
+                  $(this).attr("ows_ID") +
+                  "&Source=https://measatsatellite.sharepoint.com/sites/ECM/Pages/HOD-View.aspx'>" +
+                  itemTitle + "</a></td>" +
+                  "<td>" + toc + "</td><td>" + reqName[1] + "</td><td>" + startDate + "</td><td>" +
+                  status + "</td></tr>";
+            });
+            
+         }
+      });
+
+      sTable += "</table>";
+      $("#result").html(sTable);
+      var rows= $('#result tbody tr').length;
+      console.log(rows);
+      if(rows > 1){
+         $("#btnExport").show();
+      }else{
+         $("#btnExport").hide();
+      }
+      //html = "http://msscjy-vs-spt01.hq.measat.com/sites/eCM/Lists/eCM/search%20view.aspx#ServerFilter=FilterField1%3DType2-FilterValue1%3D" + plat  + "-FilterField2%3DArea2-FilterValue2%3D"+ platArea +"-#InplviewHash81ab588b-2642-4d55-b8bf-f11c3292276e=FilterField1%3DType2-FilterValue1%3D"+plat+"-FilterField2%3DArea2-FilterValue2%3D"+platArea+"-FilterField3%3DCustomer-FilterValue3%3D"+cust+"-IgnoreQString%3DTRUE";       
+      //window.location = html; 
+   };
+</script>
+<div id="divSearchRes">
+   <table style="padding-left:10px;">
+      <!-- <thead><div style="font-size:15px;font-weight:bold;">Advanced Search</div></thead> -->
+      <tr>
+         <td>Platform:</td>
+         <td><select id="platform">
+               <option value="Empty"></option>
+               <option value="Services">Services</option>
+               <option value="Infrastructure">Infrastructure</option>
+            </select></td>
+         <td>&nbsp;&nbsp;Platform Area:</td>
+         <td><select id="platformArea">
+               <option value="Empty"></option>
+               <option value="A1a">A1a</option>
+               <option value="M3">M3</option>
+               <option value="M3a">M3a</option>
+               <option value="VAS">VAS</option>
+               <option value="M5">M5</option>
+               <option value="M2">M2</option>
+               <option value="Other">Other</option>
+            </select></td>
+         <td>&nbsp;&nbsp;Customer:</td>
+         <td>
+            <div><input id="customer" type="text" style="width:100px;height: 16px;"> </div>
+         </td>
+         <td>&nbsp;&nbsp;Department:</td>
+         <td><select id="dept" style="width:170px;">
+               <option value="Empty"></option>
+               <option value="Customer Engineering">Customer Engineering</option>               
+               <option value="MEASAT IT">MEASAT IT</option>
+               <option value="Network Management">Network Management Center</option>
+               <option value="Service Delivery">Service Delivery</option>
+            </select></td>
+         <td>&nbsp;&nbsp;Year:</td>
+         <td><select id="year">
+               <option value="Empty"></option>
+               <option value="2017">2017</option>
+               <option value="2018">2018</option>
+               <option value="2019">2019</option>
+               <option value="2020">2020</option>
+            </select></td>
+         <td>
+            <div id="divBtnSearch">
+                  <button type="button" class="btn btn-outline-primary btn-rounded waves-effect" onclick="search()">Search</button>
+            </div>
+         </td>
+      </tr>
+   </table><br>
+   <style>
+      body {
+         font-family: Verdana, Arial, sans-serif;
+      }
+
+      a:visited {
+         color: #444;
+      }
+
+      a,
+      .ms-link:visited {
+         color: #444;
+      }
+      #btnExport{
+         display:none;
+      }
+      #divBtnSearch button.btn{
+         padding: .25rem .50rem !important;
+         border-radius: 1px !important;
+         font-size: 0.77em !important;
+         color: #4285f4 !important;
+         width: 70%;
+         border: 0.5px solid #d4d4d4 !important;
+         font-size: 10px !important;
+      }
+      #divBtnSearch button.btn{
+         border: 1px solid #d4d4d4 !important;
+      }
+      #divBtnSearch .btn{
+         box-shadow: none !important;
+      }
+      select#platform, #platformArea,
+      #dept, #year{
+         width: 100px;
+         height: 19px;
+      }
+      table#result tbody tr:first-child{
+         background-color: #ababab !important;
+      }
+      table#result tbody tr:first-child{
+         font-size: 1.2em !important;
+      }
+
+         
+      /*Advanced Search*/
+      /* #divBtnSearch button{
+         padding: 0px 4px !important;
+      } */
+      #btnExport{
+         color:#fff;
+         background-color: #4285f4 !important;
+         font-size: 12.8px;
+      }
+      #result tbody tr:first-child:hover{
+         background-color: transparent;
+      }
+      #result tbody tr:hover{
+         background-color:#cde6f7;
+      }
+      #result tbody tr:first-child td{
+         font-weight: normal;
+         font-size: 0.85em;
+         color: #777;
+         text-align: left;
+         text-decoration: none;
+         vertical-align: middle;
+         padding: 7px 7px;
+      }
+      #result tbody{
+         display: block;
+         max-height: 500px;
+         overflow: auto;
+         padding: 10px 10px;
+      }
+      
+   </style>
+   <table id="result" style="width:auto;"></table>
+</div>
+<!-- <button >Export to Excel</button> -->
+<button type="button" id="btnExport" class="btn btn-green px-3 float-right hidden"><i class="fas fa-file-excel fa-1x" aria-hidden="true"></i> &nbsp;&nbsp;Export to Excel</button>
+<script type="text/javascript">
+// var filename = "eCM HOD View";
+$("#btnExport").click(function(){
+   //check if table got data
+   if($("#result").is(':empty')){
+      alert('Nothing to Export. Please try again.');
+   }else{
+      $("#result").table2excel({
+         // exclude CSS class
+         exclude:".noExl",
+         name:"Worksheet Name",
+         filename:"eCM HOD View",//do not include extension
+         fileext:".xlsx" // file extension
+      });
+   };
+});
+</script>
+
+<html xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882">
+
+<head>
+   <!--[if gte mso 9]><xml>
+<mso:CustomDocumentProperties>
+<mso:display_urn_x003a_schemas-microsoft-com_x003a_office_x003a_office_x0023_Editor msdt:dt="string">spfsrvacc</mso:display_urn_x003a_schemas-microsoft-com_x003a_office_x003a_office_x0023_Editor>
+<mso:Order msdt:dt="string">6400.00000000000</mso:Order>
+<mso:display_urn_x003a_schemas-microsoft-com_x003a_office_x003a_office_x0023_Author msdt:dt="string">spfsrvacc</mso:display_urn_x003a_schemas-microsoft-com_x003a_office_x003a_office_x0023_Author>
+<mso:ContentTypeId msdt:dt="string">0x010100B3C0CB33379E5C44B0CA64832B0CE344</mso:ContentTypeId>
+</mso:CustomDocumentProperties>
+</xml><![endif]-->
+   <title>Search Function</title>
+</head>

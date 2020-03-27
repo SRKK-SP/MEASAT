@@ -1,0 +1,148 @@
+﻿
+h1,
+h2,
+h3,
+h4,
+h5,
+h6{
+    font-family: "Verdana", "Geneva" ,sans-serif;
+}
+
+h6{
+    padding: 10px 0 10px 0;
+}
+
+.col-md-12 {
+    max-width: 100%;
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+}
+
+table th {
+    font-weight: 600 !important;
+}
+
+body {
+    background: #fff;
+    font-family: "Verdana","Geneva",sans-serif !important;
+    color: #4e4e4e;
+    line-height: 22px;
+}
+
+#idheader{
+    border-bottom:2px solid #000;
+}
+#tblPrint tbody tr td{
+    width:20% !important;
+}
+
+#tblPrint tbody tr td:nth-child(2){
+    width:80% !important;
+    /* padding: 0 0 0 20px !important; */
+}
+/* #tblPrint tbody tr:nth-child(even) {
+    background-color: #eff0f1;
+} */
+
+#tblPersonel tbody tr #tdPersonel{
+    width:25% !important;
+}
+#tblPersonel tbody tr #tdPersonel2 {
+    width:55% !important;
+}
+
+
+/*PRINT CSS*/
+
+
+html *{
+    color: #000 !important;
+    font-family: 'Open Sans', sans-serif !important;
+    font-size:10px !important;
+    line-height: 1.4 !important;
+}
+#ms-designer-ribbon{
+    display:none!important;
+}
+#s4-bodyContainer{
+    padding:0px !important;
+}
+/* #cMonth{
+    font-size:13px !important;
+} */
+/* #hatim{
+    text-transform: uppercase;
+}
+#hatim::before{
+    content:"\25CF";
+} */
+#s4-titlerow,
+#sideNavBox,
+#zz15_RootAspMenu{
+	display:none !important;
+}
+#contentBox {
+    margin-left: 0px;
+    /* width: 900px; */
+}
+table{
+    border-collapse: collapse;
+}
+
+table th, td{
+    padding:5px 5px 5px 5px;
+}
+
+#printContainer table{
+    /* margin-left:10px; */
+}
+/* td.tdData{
+    padding-left:16px;
+}
+td.tdData p {
+    padding: 0px 58px 0px 0px;
+} */
+#layoutsTable{/*center and remove 100% width*/
+    width: auto !important;
+    margin: 0 auto;
+    height: auto;
+}
+#slideUP, #idSiteLogo2, #idtopHeader, #navdiv, #footer{
+    display:none !important;
+}
+
+/* .imgHeader{
+    background-image: url(https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&h=350);
+    background-repeat: no-repeat;
+    background-position: left top;
+    padding-top:68px;
+    margin-bottom:50px;
+  } */
+  #printContainer{
+    width: 588px;
+    padding: 30px 30px;
+    margin: auto;
+    /* display: flex;
+    flex-flow: row wrap; */
+    /* border: 1px solid #cdcdcd; */
+  }
+  #printBtn{
+      position:absolute;
+      margin-left:-5000px
+  }
+  @media print {
+    * {-webkit-print-color-adjust:exact;}
+    
+    #printContainer{
+        width: auto !important;
+        padding: 30px 30px;
+        margin: auto;
+        /* display: flex;
+        flex-flow: row wrap; */
+        /* border: 1px solid #cdcdcd; */
+      }
+      html *{
+        font-size:12px !important;
+        line-height: 1.6 !important;
+    }
+  }

@@ -1,0 +1,961 @@
+﻿<!DOCTYPE html>
+<html>
+<title>Display e-CM</title>
+
+<link rel='stylesheet' href='https://measatsatellite.sharepoint.com/sites/ECM/SiteAssets/eCM/CSS/Form.css'>
+<link rel='stylesheet' href='https://measatsatellite.sharepoint.com/sites/ECM/SiteAssets/eCM/CSS/displayForm.css'>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css'>
+<script type="text/javascript" src="https://measatsatellite.sharepoint.com/sites/ECM/SiteAssets/eCM/JS/jquery.SPServices-2014.02.min.js"></script>
+
+
+<body>
+    <div class="container">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#divChangeInfo">CHANGE INFORMATION</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#divGenInfo">
+                    GENERAL INFORMATION</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#divReviewer">
+                    REVIEWER</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#divChangeDet">
+                    CHANGE DETAILS</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#divchangeProc">
+                    CHANGE PROCEDURES</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#divAttach">ATTACHMENTS</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#divFallBack">FALLBACK PROCEDURES</a>
+            </li>
+        </ul>
+
+        <div class="divChange">
+            <div class="tab-content">
+                <div class="tab-pane fade in active show" id="divChangeInfo">
+                    <div class="limiter">
+                        <div class="container-table100">
+                            <div class="wrap-table100">
+                                <div class="table100 ver5">
+                                    <div class="table100-body">
+                                        <table>
+                                            <colgroup>
+                                                <col style="width:20%">
+                                                <col style="width:80%">
+                                            </colgroup>
+                                            <tbody>
+                                               <tr>
+                                                    <td class="column1">Status</td>
+                                                    <td class="column2"><span id="idstatus"></span></td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td class="column1">CM Number</td>
+                                                    <td class="column2"><span id="idcmnumber"></span></td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td class="column1">Criticality</td>
+                                                    <td class="column2"><span id="idSlctCriticality"></span></td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td class="column1">Area</td>
+                                                    <td class="column2"><span id="idSlctArea"></span></td>
+                                                </tr>
+
+                                                <tr class='clsDivAreaOthers' style="display: none !important;">
+                                                    <td class="column1">Area (Others)</td>
+                                                    <td class="column2"><span id="idAreaOthers"></span></td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td class="column1">Change Category</td>
+                                                    <td class="column2"><span id="idChangeCat"></span></td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td class="column1">Change Type</td>
+                                                    <td class="column2"><span id="idChangeType"></span></td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td class="column1">Platfotm</td>
+                                                    <td class="column2"><span id="idPlatform"></span></td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td class="column1">Platform Area</td>
+                                                    <td class="column2"><span id="idPlatformArea"></span></td>
+                                                </tr>
+
+                                                <tr class='clsDivPlatFormOthers' style="display: none !important;">
+                                                    <td class="column1">Platform Area (Others)</td>
+                                                    <td class="column2"><span id="idPlatFormAreaOthers"></span></td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td class="column1">Customer</td>
+                                                    <td class="column2"><span id="idCustomer"></span></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-pane fade" id="divGenInfo">
+                    <div class="limiter">
+                        <div class="container-table100">
+                            <div class="wrap-table100">
+                                <div class="table100 ver5">
+                                    <div class="table100-body">
+                                        <table>
+                                            <colgroup>
+                                                <col style="width:20%">
+                                                <col style="width:80%">
+                                            </colgroup>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="column1">Title</td>
+                                                    <td class="column2"><span id="idTitle"></span></td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td class="column1">Requester Name</td>
+                                                    <td class="column2"><span id="idRequesterName"></span></td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td class="column1">Department</td>
+                                                    <td class="column2"><span id="idDepartment"></span></td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td class="column1">Contact No</td>
+                                                    <td class="column2"><span id="idContact"></span></td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td class="column1">Start Date</td>
+                                                    <td class="column2">
+                                                        <span id="idDateReq"></span>
+                                                        <br>
+                                                        <span id="idTimeReq"></span>
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td class="column1">End Date</td>
+                                                    <td class="column2">
+                                                        <span id="idEndDate"></span>
+                                                        <br>
+                                                        <span id="idEndTime"></span>
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td class="column1">Duration</td>
+                                                    <td class="column2"><span id="idDuration"></span></td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td class="column1">External Customer Notification</td>
+                                                    <td class="column2"><span id="idECN"></span></td>
+                                                </tr>
+
+                                                <tr class='clsDivExtCustomer' style="display: none !important;">
+                                                    <td class="column1">Email Content</td>
+                                                    <td class="column2"><span id="idEmailContent"></span></td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td class="column1">NMC Participation</td>
+                                                    <td class="column2"><span id="idNMC"></span></td>
+                                                </tr>
+
+                                                <tr class='clsDivNMCComment' style="display: none !important;">
+                                                    <td class="column1">Comment</td>
+                                                    <td class="column2"><span id="idNMCComment"></span></td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td class="column1">PTW</td>
+                                                    <td class="column2"><span id="idPTW"></span></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="divReviewer">
+                    <div class="limiter">
+                        <div class="container-table100">
+                            <div class="wrap-table100">
+                                <div class="table100 ver5">
+                                    <div class="table100-body">
+                                        <table>
+                                            <colgroup>
+                                                <col style="width:20%">
+                                                <col style="width:80%">
+                                            </colgroup>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="column1">Assign to another Implementer</td>
+                                                    <td class="column2"><span id="idAssignToOtherImp"></span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="column1">Requester Manager</td>
+                                                    <td class="column2"><span id="idRequesterManager"></span></td>
+                                                </tr>
+                                                 <tr class="clsSEO" style="display: none;">
+                                                    <td class="column1">SEO</td>
+                                                    <td class="column2"><span id="idSEOManager"></span></td>
+                                                </tr>
+
+                                                <tr class="clsGSA" style="display: none;">
+                                                    <td class="column1">GSA</td>
+                                                    <td class="column2"><span id="idGSAManager"></span></td>
+                                                </tr>
+
+                                               
+
+                                                <tr class="clsFacility" style="display: none;">
+                                                    <td class="column1">Facility</td>
+                                                    <td class="column2"><span id="idFacilityManager"></span></td>
+                                                </tr>
+                
+                                                <tr class='clsDivImplementer'>
+                                                    <td class="column1">Implementer</td>
+                                                    <td class="column2"><span id="idImplementer"></span></td>
+                                                </tr>
+                                                <tr class='clsDivImplementer'>
+                                                    <td class="column1">Implementer Manager</td>
+                                                    <td class="column2"><span id="idImplementerMgr"></span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="column1">HOD</td>
+                                                    <td class="column2"><span id="idHOD"></span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="column1">Person to Inform (Optional)</td>
+                                                    <td class="column2"><span id="idPersontoInform"></span></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- #4 -->
+                <div class="tab-pane fade" id="divChangeDet">
+                    <div class="limiter">
+                        <div class="container-table100">
+                            <div class="wrap-table100">
+                                <div class="table100 ver5">
+                                    <div class="table100-body">
+                                        <table>
+                                            <colgroup>
+                                                <col style="width:20%">
+                                                <col style="width:80%">
+                                            </colgroup>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="column1">Justification of Change</td>
+                                                    <td class="column2"><span class="displayViewData" id="idJustiChange"></span></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class='col-md-12'>
+                        <div class='row row-header'>
+                            <div class='col-md-3'>
+                                <label data-toggle="collapse" data-target="#collapseSAE" aria-expanded="true"
+                                    aria-controls="collapseSAE"><i class="fa" aria-hidden="true"></i> SYSTEM AND EQUIPMENT</label>
+                            </div>
+                        </div>
+                        <br>
+                        <div id="collapseSAE" class="collapse row show" aria-labelledby="heading4" data-parent="#divChangeDet">
+                            <div class="limiter">
+                                <div class="container-table100">
+                                    <div class="wrap-table100">
+                                        <div class="table100 ver5">
+                                            <div class="table100-body">
+                                                <table>
+                                                    <colgroup>
+                                                        <col style="width:20%">
+                                                        <col style="width:80%">
+                                                    </colgroup>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td class="column1">Hardware</td>
+                                                            <td class="column2"><span class="displayViewData" id='idHardware'></span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="column1">Purpose</td>
+                                                            <td class="column2"><span class="displayViewData" id='idPurpose'></span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="column1">Action</td>
+                                                            <td class="column2"><span class="displayViewData" id="idSlctAction"></span></td>
+                                                        </tr>
+                                                        <tr class='row clsDivSpecify' style="display:none">
+                                                            <td class="column1">Specify</td>
+                                                            <td class="column2"><span class="displayViewData" id='idSpecify'></span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="column1">Change Summary</td>
+                                                            <td class="column2"><span class="displayViewData" id="idChangeSummary"></span></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class='row row-header'>
+                            <div class='col-md-12'>
+                                <label data-toggle="collapse" data-target="#collapseRARFIMC" aria-expanded="true"
+                                    aria-controls="collapseRARFIMC"><i class="fa" aria-hidden="true"></i> RESOURCE REQUIRED FOR IMPLEMENTING
+                                    CHANGE</label>
+                            </div>
+                        </div>
+                        <br>
+                        <div id="collapseRARFIMC" class="collapse container show" aria-labelledby="heading4"
+                            data-parent="#divChangeDet">
+                            <div class='row'>
+                                <div class='col-md-3'>
+                                    <label>Personnel <br>(Internal & External)</label>
+                                </div>
+                                <div class='col-md-9'>
+                                    <table class="table table-striped personnel-data">
+                                        <thead class="text-center">
+                                            <tr>
+                                                <th width="33%">Personnel Name</th>
+                                                <th width="33%">Department/Company</th>
+                                                <th width="33%">Personnel Contact No</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="text-center">
+                                            <tr>
+                                                <td><span class=' displayViewData ' id='idPersonnelName1'></span>
+                                                </td>
+                                                <td><span class=' displayViewData ' id='idPerDepartment1'></span>
+                                                </td>
+                                                <td><span class=' displayViewData ' id='idPerContact1'></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span class=' displayViewData ' id='idPersonnelName2'></span>
+                                                </td>
+                                                <td><span class=' displayViewData ' id='idPerDepartment2'></span>
+                                                </td>
+                                                <td><span class=' displayViewData ' id='idPerContact2'></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span class=' displayViewData ' id='idPersonnelName3'></span>
+                                                </td>
+                                                <td><span class=' displayViewData ' id='idPerDepartment3'></span>
+                                                </td>
+                                                <td><span class=' displayViewData ' id='idPerContact3'></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span class=' displayViewData ' id='idPersonnelName4'></span>
+                                                </td>
+                                                <td><span class=' displayViewData ' id='idPerDepartment4'></span>
+                                                </td>
+                                                <td><span class=' displayViewData ' id='idPerContact4'></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span class=' displayViewData ' id='idPersonnelName5'></span>
+                                                </td>
+                                                <td><span class=' displayViewData ' id='idPerDepartment5'></span>
+                                                </td>
+                                                <td><span class=' displayViewData ' id='idPerContact5'></span></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- #5 -->
+                <div class="tab-pane fade" id="divchangeProc">
+                    <div class="col-md-12">
+                        <div class='row row-header'>
+                            <div class='col-md-12'>
+                                <label>PROPOSED CHANGE PROCEDURE</label>
+                                <label class="float-right"><a class="waves-effect waves-light" id="showAll">Show All</a></label>
+                            </div>
+                        </div>
+                        <div class="accordion" id="accordionProcedure">
+                            <div class="row">
+                                <div class="clsAccheader">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link" type="button" data-toggle="collapse"
+                                            data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            <i class="fa" aria-hidden="true"></i> Pre Implementation
+                                        </button>
+                                    </h5>
+                                </div>
+
+                                <div id="collapseOne" class="collapse container show" aria-labelledby="headingOne"
+                                    data-parent="#accordionProcedure">
+                                    <table class="table table-striped tblpcr" id="tblPreImp">
+                                        <thead class='text-center'>
+                                            <tr>
+                                                <th>Start Date</th>
+                                                <th>End Date</th>
+                                                <th>Action taken</th>
+                                                <th>Implementer</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tbodyPreImp">
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="clsAccheader">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link" type="button" data-toggle="collapse"
+                                            data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseOne">
+                                            <i class="fa" aria-hidden="true"></i> Implementation
+                                        </button>
+                                    </h5>
+                                </div>
+
+
+                                <div id="collapseTwo" class="collapse container" aria-labelledby="headingTwo"
+                                    data-parent="#accordionProcedure">
+                                    <table class="table table-striped tblpcr" id="tblImp">
+                                        <thead class='text-center'>
+                                            <tr>
+                                                <th>Start Date</th>
+                                                <th>End Date</th>
+                                                <th>Action taken</th>
+                                                <th>Implementer</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tbodyImp">
+
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="clsAccheader">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link" type="button" data-toggle="collapse"
+                                            data-target="#collapseThree" aria-expanded="true"
+                                            aria-controls="collapseOne">
+                                            <i class="fa" aria-hidden="true"></i> Post Implementation
+                                        </button>
+                                    </h5>
+                                </div>
+
+
+                                <div id="collapseThree" class="collapse container" aria-labelledby="headingThree"
+                                    data-parent="#accordionProcedure">
+                                    <table class="table table-striped tblpcr" id="tblPostImp">
+                                        <thead class='text-center'>
+                                            <tr>
+                                                <th>Start Date</th>
+                                                <th>End Date</th>
+                                                <th>Action taken</th>
+                                                <th>Implementer</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tbodyPostImp">
+
+                                        </tbody>
+                                    </table>
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <div class='row row-header'>
+                            <div class='col-md-4'>
+                                <label>IMPACT ASSESSMENT</label>
+                            </div>
+                        </div>
+                        <div class="accordion" id="accordionProcedure">
+                            <div class="row">
+                                <div class="clsAccheader">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link" type="button" data-toggle="collapse"
+                                            data-target="#collapseFour" aria-expanded="true"
+                                            aria-controls="collapseFour">
+                                            <i class="fa" aria-hidden="true"></i> IMPACT ASSESSMENT
+                                        </button>
+                                    </h5>
+                                </div>
+
+                                <div id="collapseFour" class="collapse container" aria-labelledby="heading4"
+                                    data-parent="#accordionProcedure">
+                                    <table class="table table-striped tblpcr" id="tblImpact">
+                                        <thead class='text-center'>
+                                            <tr>
+                                                <th>Impact Description</th>
+                                                <th>Scale</th>
+                                                <th>Mitigation Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tbodyImpact">
+
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- #6 -->
+                <div class="tab-pane fade" id="divAttach">
+                    <div class="limiter">
+                        <div class="container-table100">
+                            <div class="wrap-table100">
+                                <div class="table100 ver5">
+                                    <div class="table100-body">
+                                        <table>
+                                            <colgroup>
+                                                <col style="width:20%">
+                                                <col style="width:80%">
+                                            </colgroup>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="column1">Attachments</td>
+                                                    <td class="column2"><div class='col-md-5' id="attItems"></div></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- #7 -->
+                <div class="tab-pane fade" id="divFallBack">
+                    <div class="limiter">
+                        <div class="container-table100">
+                            <div class="wrap-table100">
+                                <div class="table100 ver5">
+                                    <div class="table100-body">
+                                        <table>
+                                            <colgroup>
+                                                <col style="width:20%">
+                                                <col style="width:80%">
+                                            </colgroup>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="column1">Fallback Procedures</td>
+                                                    <td class="column2"><span class="displayViewData" id="idFallBack"></span></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="divBtnRow ">
+            <div class="row float-right" id="divEditBtn">
+                <a class="btn btn-outline-primary btn-rounded waves-effect clsbtnPrint" onclick="print()">Print</a>
+                <a id="idbtnDuplicate" class="btn btn-outline-primary btn-rounded waves-effect hidden"
+                    onclick='openConfirm()'>Duplicate</a>
+                <!-- 
+                    <a class="btn btn-outline-primary btn-rounded waves-effect" onclick="saveAsDraft()">Save as Draft</a>
+                    <a class="btn btn-outline-primary btn-rounded waves-effect" onclick="Submit()">Submit</a> -->
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="container">
+        <div id="tasksUL" style="border:1px solid #ccc;padding:25px;">
+            <li style="font-size:11px">Approval History:</li>
+        </div>
+        <div id="approverTask">
+
+        </div>
+    </div>
+
+
+    <!-- Modals -->
+    <div class="row">
+        <div class="modal fade" id="idModalNoData" role="dialog" data-keyboard="false" data-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="text-center">
+                            <img src="https://measatsatellite.sharepoint.com/sites/ECM/SiteAssets/eCM/IMAGES/warning-danger.png"
+                                alt="warning-image">
+                        </div>
+                        <div class='clsModalContent text-center'>
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal"
+                            onclick="closeModal()">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <div class="row">
+        <div class="modal fade" id="idModalDiscard" role="dialog" data-keyboard="false" data-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="text-center">
+                            <img src="https://measatsatellite.sharepoint.com/sites/ECM/SiteAssets/eCM/IMAGES/warning.png"
+                                alt="warning-image">
+                        </div>
+                        <div class='clsModalContent text-center'>
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal"
+                            onclick="noSave()">Yes</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="close()">No</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Duplicate -->
+    <div class="row">
+        <div class="modal fade" id="idModalDuplicate" role="dialog" data-keyboard="false" data-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="text-center">
+                            <img src="https://measatsatellite.sharepoint.com/sites/ECM/SiteAssets/eCM/IMAGES/warning.png"
+                                alt="warning-image">
+                        </div>
+                        <div class='clsModalContentDuplicate text-center'>
+                            <h4>Are you sure to duplicate this item?</h4>
+                            <p class="text-warning text-left ml-3">Note: This item will be duplicate into a new
+                                item.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal"
+                            onclick="duplicateItem()">Yes</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal CLOSE CM -->
+    <div class="row">
+        <div class="modal fade" id="idModalCloseCM" role="dialog" data-keyboard="false" data-backdrop="static">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="text-center">
+                            <img src="https://measatsatellite.sharepoint.com/sites/ECM/SiteAssets/eCM/IMAGES/warning.png"
+                                alt="warning-image">
+                        </div>
+                        <div class='clsModalContentDuplicate text-center'>
+                            <h4>Are you sure to close this CM?</h4>
+                            <p class="text-warning text-left ml-3">Note: This item status will be close.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal"
+                            onclick="CloseItem()">Yes</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal CLOSE FORM CM -->
+    <div class="row">
+        <div class="modal fade" id="idModalCloseForm" role="dialog" data-keyboard="false" data-backdrop="static">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-right IMPModalTitle">Close CM Form</h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class='clsModalContentDuplicate text-center'>
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label>Close Status:</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <select class="form-control clsSelCheck" id="idSlctCloseStatus" style="height: 32px !important  ;">
+                                            <option value="none">Select Status</option>
+                                            <option value="Closed Successful">Closed Successful</option>
+                                            <option value="Closed Unsuccessful">Closed Unsuccessful</option>
+                                        </select>
+                                    </div>
+                                </div><br>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <label>Comment:</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <textarea class="form-control" id="idCloseCMComment" rows="5"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal"
+                            onclick="cmData()">Yes</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals Success-->
+    <div class="row">
+        <div class="modal fade" id="idModalSuccess" role="dialog" data-keyboard="false">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="text-center">
+                            <img src="https://measatsatellite.sharepoint.com/sites/ECM/SiteAssets/eCM/IMAGES/success.png"
+                                alt="warning-success">
+                        </div>
+                        <div class='clsModalContentSubmit text-center'>
+
+                        </div>
+                    </div>
+                    <div class="modal-footer clsModalSuccessFooter">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modals DAnger -->
+    <div class="row">
+        <div class="modal fade" id="idModalDanger" role="dialog" data-keyboard="false">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-bodySuccess-danger">
+                        <div class="text-center">
+                            <img src="https://measatsatellite.sharepoint.com/sites/ECM/SiteAssets/eCM/IMAGES/success.png"
+                                alt="warning-success">
+                        </div>
+                        <div class='clsModalContentSubmit text-center'>
+
+                        </div>
+                    </div>
+                    <div class="modal-footer clsModalFailedFooter">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    var Pid = getURLParameter('ID');
+    console.log(Pid);
+    console.log("<Query><Where><Eq><FieldRef Name='ID' /><Value Type='Integer'>" + Pid + "</Value></Eq></Where></Query>");
+    var myQuery = "<Query><Where><Eq><FieldRef Name='ID' /><Value Type='Integer'>" + Pid + "</Value></Eq></Where></Query>";
+    var approverEmail;
+    $(document).ready(function() {
+        // Get instance id value from current item
+        $().SPServices({
+            operation: "GetListItems",
+            async: false,
+            listName: "e-CM",
+            CAMLViewFields: "<ViewFields><FieldRef Name='InstanceID0' /><FieldRef Name='Approver_x0020_Email' /></ViewFields>",
+            CAMLQuery: myQuery,
+            completefunc: function(xData, Status) {
+                //console.log('e-CM status: ' + Status);
+                $(xData.responseXML).SPFilterNode("z:row").each(function() {
+                    console.log(this);
+                    console.log($(this).attr("ows_Approver_x0020_Email"));
+                    approverEmail = $(this).attr("ows_Approver_x0020_Email");
+                    if(approverEmail.indexOf("membership") != -1){
+                        
+                        approverEmail = approverEmail.split("membership|")[1];
+                        debugger;
+                    }
+                    //approverEmail = approverEmail.split("membership|")[1];
+                    debugger;
+                    var email = jQuery().SPServices.SPGetCurrentUser({
+                        fieldName: "EMail"
+                    });
+                    var title = jQuery().SPServices.SPGetCurrentUser({
+                        fieldName: "Title"
+                    });
+
+                    if (title == "LIM, Seng Eng" || title == "WU, Fock Chang" || title == "ABDUL KARIM, Mohd Fadzil" || title == "MSS_Facility_Cyberjaya") {
+                        title = "Facility_Cyberjaya";
+                        email = "facility_cyberjaya@measat.com";
+                    }
+                    if (email == approverEmail) {
+                        $().SPServices({
+                            operation: "GetListItems",
+                            async: false,
+                            listName: "eCM Approval Workflow Tasks",
+                            CAMLViewFields: "<ViewFields><FieldRef Name='RelatedItems' /><FieldRef Name='ID' /><FieldRef Name='Status' /><FieldRef Name='AssignedTo' /></ViewFields>",
+                            CAMLQuery: "<Query><Where><Eq><FieldRef Name='Status'/><Value Type='Text'>Not Started</Value></Eq></Where></Query>",
+                            completefunc: function(xData2, Status2) {
+                                //console.log('eCM Approval Workflow Tasks status: ' + Status2);
+                                $(xData2.responseXML).SPFilterNode("z:row").each(function() {
+                                    //console.log(this);
+                                    var relate = $(this).attr("ows_RelatedItems");
+                                    if (relate != undefined) {
+                                        var rel = relate.substr(1, relate.length - 2);
+                                        var relatedItems = $.parseJSON(rel);
+                                        var assignTo = $(this).attr("ows_AssignedTo");
+                                        if (assignTo.indexOf(title) > -1 && Pid == relatedItems['ItemId']) {
+                                            var taskID = parseInt($(this).attr("ows_ID"))
+                                            var approverlink = '<a href="https://measatsatellite.sharepoint.com/sites/ECM/Lists/eCM%20Approval%20Workflow%20Tasks/EditForm.aspx?ID=' + taskID + '&Source=https://measatsatellite.sharepoint.com/sites/ECM/Lists/eCM/DispForm.aspx?ID=' + Pid + '"><p style="font-size:16px;font-weight:bold;text-decoration:underline">Please click here to Approve</p></a>';
+                                            $("div#approverTask").html(approverlink);
+                                        }
+                                    }
+                                });
+                            }
+                        });
+                    }
+                    // Get WF logs rom WorkflowHistory list
+                    var wfInstanceName = $(this).attr("ows_InstanceID0");// IndstanceID0 column value must be set from "eCM workflow" workflow
+                    myQuery = "<Query><Where><Contains><FieldRef Name='WorkflowInstance' /><Value Type='Text'>" + wfInstanceName + "</Value></Contains></Where></Query>";
+                    $().SPServices({
+                        operation: "GetListItems",
+                        async: false,
+                        listName: "Workflow History",
+                        CAMLViewFields: "<ViewFields><FieldRef Name='Description' /><FieldRef Name='Created' /></ViewFields>",
+                        CAMLQuery: myQuery,
+                        completefunc: function (xData1, Status1) {
+                            //console.log('Workflow History status: ' + Status1);
+                            $(xData1.responseXML).SPFilterNode("z:row").each(function() {
+                                //console.log(this);
+                                var liHtml = "<li style='list-style-position: inside;'>" + $(this).attr("ows_Created") + " : " + $(this).attr("ows_Description") + "</li>";
+                                $("#tasksUL").append(liHtml);
+                            });
+                        }
+                    });
+                });                
+            }
+        });
+
+        //var Pid = getURLParameter('ID');
+        //var myAnotherQuery = "<Query><Where><Eq><FieldRef Name='Item' /><Value Type='Integer'>" + Pid + "</Value></Eq></Where></Query>";
+        // approver task
+        var myAnotherQuery = "<Query><Where><Eq><FieldRef Name='ID' /><Value Type='Integer'>" + Pid + "</Value></Eq></Where></Query>";
+        $().SPServices({ //start of SPServices (2)
+            operation: "GetListItems",
+            async: false,
+            listName: "e-CM",
+            CAMLViewFields: "<ViewFields><FieldRef Name='InstanceID0' /><FieldRef Name='Approver_x0020_Email' /></ViewFields>",
+            CAMLQuery: myAnotherQuery,
+            completefunc: function(xData, Status) {
+                console.log(Status); //Error 500: Internal Server Error occur in line before this. 
+                $(xData.responseXML).SPFilterNode("z:row").each(function() {
+                    var email = jQuery().SPServices.SPGetCurrentUser({
+                        fieldName: "EMail"
+                    });
+                    var title = jQuery().SPServices.SPGetCurrentUser({
+                        fieldName: "Title"
+                    });
+
+                    if (title == "LIM, Seng Eng" || title == "WU, Fock Chang" || title == "ABDUL KARIM, Mohd Fadzil") {
+                        title = "Facility_Cyberjaya";
+                        email = "facility_cyberjaya@measat.com";
+                    }
+                    debugger;
+                    console.log(email + " | " + approverEmail);
+                    if (email == approverEmail) {
+                        $().SPServices({ //SPServices when email matched the approval email
+                            operation: "GetListItems",
+                            async: false,
+                            listName: "eCM Approval Workflow Tasks",
+                            CAMLViewFields: "<ViewFields><FieldRef Name='RelatedItems' /><FieldRef Name='ID' /><FieldRef Name='Status' /><FieldRef Name='AssignedTo' /></ViewFields>",
+                            CAMLQuery: "<Query><Where><Eq><FieldRef Name='Status'/><Value Type='Text'>Not Started</Value></Eq></Where></Query>",
+                            completefunc: function(xData, Status) {
+                                console.log(Status);
+                                $(xData.responseXML).SPFilterNode("z:row").each(function() {
+                                    var relate = $(this).attr("ows_RelatedItems");
+                                    if (relate != undefined) {
+                                        var rel = relate.substr(1,  relate.length - 2);
+                                        var relatedItems = $.parseJSON(rel);
+                                        var assignTo = $(this).attr("ows_AssignedTo");
+                                        if (assignTo.indexOf(title) > -1 && Pid == relatedItems['ItemId']) {
+                                            var taskID = parseInt($(this).attr("ows_ID"))
+                                            var approverlink = '<a href="https://measatsatellite.sharepoint.com/sites/ECM/Lists/eCM%20Approval%20Workflow%20Tasks/EditForm.aspx?ID=' + taskID + '&Source=https://measatsatellite.sharepoint.com/sites/ECM/Lists/eCM/DispForm.aspx?ID=' + Pid + '"><p style="font-size:16px;font-weight:bold;text-decoration:underline">Please click here to Approve</p></a>';
+                                            $("div#approverTask").html(approverlink);
+                                        }
+                                    }
+
+                                });
+                            }
+                        }); //end of SPServices when email matched the approval email
+                    }
+                });
+            }
+        }); //end of SPServices (2)`
+
+    });
+function getURLParameter(name) {
+    return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [, ""])[1].replace(/\+/g, '%20')) || null;
+}
+
+</script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/js/mdb.min.js"></script>
+<script type='text/javascript' src='https://measatsatellite.sharepoint.com/sites/ECM/SiteAssets/eCM/JS/DisplayForm.js'></script>
+<script type='text/javascript' src='https://measatsatellite.sharepoint.com/sites/ECM/SiteAssets/eCM/JS/ChangeDateTime.js'></script>
+<!-- <script type='text/javascript' src='https://measatsatellite.sharepoint.com/sites/ECM/SiteAssets/eCM/JS/SaveasDraft.js'></script> -->
+<!-- <script type='text/javascript' src='https://measatsatellite.sharepoint.com/sites/ECM/SiteAssets/eCM/JS/Submit.js'></script> -->
+
+</html>

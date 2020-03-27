@@ -1,0 +1,74 @@
+﻿/*PAGES CSS*/
+.page-Title h4{
+    font-size: 17px !important;
+    font-family: "Roboto", sans-serif !important;
+    color: #4e4e4e;
+    font-weight: 400;
+}
+.divTitle h4{
+    color:#4e4e4e;
+    text-decoration: underline;
+    text-decoration-color:#4285f4;
+    font-size: 16px !important;
+    font-family: "Roboto", sans-serif !important;
+}
+.divChange{
+    border: 1px solid #dee2e6;
+    border-top: none;
+    /* padding: 0px 10px; */
+}
+.divChange table td {/* //list data change font size */
+    font-size: 11px !important;
+}
+
+
+/*Advanced Search*/
+#divBtnSearch button{
+    padding: 5px 21px !important;
+}
+#result tbody tr:first-child:hover{
+    background-color: transparent;
+}
+#result tbody tr:hover{
+    background-color:#cde6f7;
+}
+#result tbody tr:first-child td{
+    font-weight: normal;
+    font-size: 0.85em;
+    color: #777;
+    text-align: left;
+    text-decoration: none;
+    vertical-align: middle;
+}
+#result tbody{
+    display: block;
+    max-height: 500px;
+    overflow: auto;
+}
+
+/* //limit text for title and Requester Name */
+table tbody tr td.ms-vb-user:nth-child(7) span{
+    /* //color:#4285f4 !important; */
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    max-width: 143px !important;
+        
+}
+
+table tbody tr td div[field="LinkTitle"]{
+    display: block; /* or inline-block */
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    overflow: hidden;
+    max-height: 3.6em;
+    max-width: 253px !important;
+    line-height: 1.8em;
+    text-overflow: ellipsis !important;
+}
+
+/*hide Edit Item in 'More Options'*/
+li[id$="22"]{
+
+	display:none;	
+}

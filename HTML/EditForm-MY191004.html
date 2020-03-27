@@ -1,0 +1,785 @@
+﻿<!DOCTYPE html>
+<html>
+<title>New e-CM</title>
+
+<link rel='stylesheet' href='https://measatsatellite.sharepoint.com/sites/ECM/SiteAssets/eCM/CSS/Form.css'>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css'>
+<body>
+    <div class="container">
+        <ul class="nav nav-tabs">
+          <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#divChangeInfo">CHANGE INFORMATION</a>
+          </li>
+          <li class="nav-item" >
+            <a class="nav-link" data-toggle="tab" href="#divGenInfo">
+            GENERAL INFORMATION</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#divReviewer">
+            REVIEWER</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#divChangeDet">
+            CHANGE DETAILS</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#divchangeProc">
+            CHANGE PROCEDURES</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#divAttach">ATTACHMENTS</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#divFallBack">FALLBACK PROCEDURES</a>
+          </li>
+        </ul>
+        
+        <div class="divChange">
+            <div class="tab-content">
+                <div class="tab-pane fade in active show" id="divChangeInfo">
+                    <div class='col-md-6'>
+                        <!-- <div class='row'>
+                            <div class='col-md-3'>
+                                <label>Status</label>
+                            </div>
+                            <div class='col-md-6'>
+                                <input type='text' class='form-control clsInputHeader' id='idOutletName' readonly="readonly" style="width:100px" value="New">
+                            </div>
+                        </div>
+                        <br>
+                        <div class='row'>
+                            <div class='col-md-3'>
+                                <label>REF</label>
+                            </div>
+                            <div class='col-md-6'>
+                                <input type='text' class='form-control clsInputHeader' id='idOutletSales' readonly="readonly">
+                            </div>
+                        </div>
+                        <br> -->
+                        <div class='row'>
+                            <div class='col-md-3'>
+                                <label>Criticality</label>
+                            </div>
+                            <div class='col-md-6'>
+                                <select class="form-control" id="idSlctCriticality">
+                                    <option value="none">Select value</option>
+                                    <option value="High">High</option>
+                                    <option value="Medium">Medium</option>
+                                    <option value="Low">Low</option>
+                                </select>
+                            </div>
+                        </div>
+                        <br>
+                        <div class='row'>
+                            <div class='col-md-3'>
+                                <label>Area</label>
+                            </div>
+                            <div class='col-md-6'>
+                                <select class="form-control" id="idSlctArea">
+                                    <option selected></option>
+                                    <option value="TT&C">TT&C</option>
+                                    <option value="VAS">VAS</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                        <br>
+                        <div class='row clsDivAreaOthers' style="display: none;">
+                            <div class='col-md-3'>
+                                <label>Area (Others)</label>
+                            </div>
+                            <div class='col-md-6'>
+                                <input type='text' class='form-control clsInputHeader' id='idAreaOthers'>
+                            </div>
+                        </div>
+                        <br class='clsDivAreaOthers' style="display: none;">
+                        <div class='row'>
+                            <div class='col-md-3'>
+                                <label>Change Category</label>
+                            </div>
+                            <div class='col-md-6'>
+                                <select class="form-control" id="idChangeCat">
+                                    <option selected></option>
+                                    <option value="Planned">Planned</option>
+                                    <option value="Urgent">Urgent</option>
+                                </select>
+                            </div>
+                        </div>
+                        <br>
+                        <div class='row'>
+                            <div class='col-md-3'>
+                                <label>Change Type</label>
+                            </div>
+                            <div class='col-md-6'>
+                                <select class="form-control" id="idChangeType">
+                                    <option selected></option>
+                                    <option value="Standard CM">Standard CM</option>
+                                    <option value="Power CM">Power CM</option>
+                                    <option value="TT&C & Standard CM">TT&C & Standard CM</option>
+                                    <option value="TT&C & Power CM">TT&C & Power CM</option>
+                                </select>
+                            </div>
+                        </div>
+                        <br>
+                        <div class='row'>
+                            <div class='col-md-3'>
+                                <label>Platform</label>
+                            </div>
+                            <div class='col-md-6'>
+                                <select class="form-control" id="idPlatform">
+                                    <option selected></option>
+                                    <option value="Services">Services</option>
+                                    <option value="Infrastructure">Infrastructure</option>
+                                </select>
+                            </div>
+                        </div>
+                        <br>
+                        <div class='row'>
+                            <div class='col-md-3'>
+                                <label>Platform Area</label>
+                            </div>
+                            <div class='col-md-6'>
+                                <select class="form-control" id="idPlatformArea">
+                                    <option selected></option>
+                                    <option value="A1a">A1a</option>
+                                    <option value="M3">M3</option>
+                                    <option value="M3a">M3a</option>
+                                    <option value="VAS">VAS</option>
+                                    <option value="M5">M5</option>
+                                    <option value="M2">M2</option>
+                                    <option value="Others">Others</option>
+                                </select>
+                            </div>
+                        </div>
+                        <br>
+                        <div class='row clsDivPlatFormOthers' style="display: none !important;">
+                            <div class='col-md-3'>
+                                <label>Platform Area (Others)</label>
+                            </div>
+                            <div class='col-md-6'>
+                                <input type='text' class='form-control clsInputHeader' id='idPlatFormAreaOthers'>
+                            </div>
+                        </div>
+                        <br class='clsDivPlatFormOthers'>
+                        <div class='row'>
+                            <div class='col-md-3'>
+                                <label>Customer</label>
+                            </div>
+                            <div class='col-md-6'>
+                                <input type='text' class='form-control clsInputHeader' id='idCustomer' >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="divGenInfo">
+                    <div class='col-md-6'>
+                        <div class='row'>
+                            <div class='col-md-3'>
+                                <label>Title</label>
+                            </div>
+                            <div class='col-md-6'>
+                                <input type='text' class='form-control clsInputHeader' id='idTitle'>
+                            </div>
+                        </div>
+                        <br>
+                        <div class='row'>
+                            <div class='col-md-3'>
+                                <label>Requester Name</label>
+                            </div>
+                            <div class='col-md-6'>
+                                <input type='text' class='form-control clsInputHeader' id='idRequesterName' disabled='disabled'>
+                            </div>
+                        </div>
+                        <br>
+                        <div class='row'>
+                            <div class='col-md-3'>
+                                <label>Department</label>
+                            </div>
+                            <div class='col-md-6'>
+                                <input type='text' class='form-control clsInputHeader' id='idDepartment' disabled='disabled'>
+                            </div>
+                        </div>
+                        <br>
+                        <div class='row'>
+                            <div class='col-md-3'>
+                                <label>Contact No</label>
+                            </div>
+                            <div class='col-md-6'>
+                                <input type='tel' class='form-control clsInputHeader' id='idContact' disabled='disabled'>
+                            </div>
+                        </div>
+                        <br>
+                        <div class='row'>
+                            <div class='col-md-3'>
+                                <label>Date Requested</label>
+                            </div>
+                            <div class='col-md-4'>
+                                <input type='text' class='form-control clsInputHeader hidden' id='idSDateTimeGI' >
+                                <input type='date' class='form-control clsInputHeader clsDateTimeGI' id='idDateReq' >
+                            </div>
+                            <div class='col-md-2'>
+                                <input type='time' class='form-control clsInputHeader clsDateTimeGI' id='idTimeReq'>
+                            </div>
+                        </div>
+                        <br>
+                        <div class='row'>
+                            <div class='col-md-3'>
+                                <label>End Date</label>
+                            </div>
+                            <div class='col-md-4'>
+                                <input type='text' class='form-control clsInputHeader hidden' id='idEDateTimeGI'>
+                                <input type='date' class='form-control clsInputHeader clsDateTimeGI2' id='idEndDate' >
+                            </div>
+                            <div class='col-md-2'>
+                                <input type='time' class='form-control clsInputHeader clsDateTimeGI2' id='idEndTime'>
+                            </div>
+                        </div>
+                        <br>
+                        <div class='row'>
+                            <div class='col-md-3'>
+                                <label>Duration</label>
+                            </div>
+                            <div class='col-md-6'>
+                                <input type='text' class='form-control clsInputHeader' id='idDuration' disabled="disabled">
+                            </div>
+                            
+                        </div>
+                        <br>
+                        <div class='row'>
+                            <div class='col-md-3'>
+                                <label>External Customer Notification</label>
+                            </div>
+                            <div class='col-md-6'>
+                                <input type='checkbox' class='clsInputHeader' id='idECN' >
+                            </div>
+                        </div>
+                        <div class="row clsDivExtCustomer" style="display:none;">
+                            <div class='col-md-3'>
+                                <label>Email Content</label>
+                            </div>
+                            <div class='col-md-6'>
+                                <textarea class="form-control rounded-0" id="idEmailContent" rows="4"></textarea>
+                            </div>
+                        </div>
+                        <br>
+                        <div class='row'>
+                            <div class='col-md-3'>
+                                <label>NMC Participation</label>
+                            </div>
+                            <div class='col-md-6'>
+                                <input type='checkbox' class='clsInputHeader' id='idNMC' >
+                            </div>
+                        </div>
+                        <div class="row clsDivNMCComment" style="display:none;">
+                            <div class='col-md-3'>
+                                <label>Comment</label>
+                            </div>
+                            <div class='col-md-6'>
+                                <input type='text' class='form-control clsInputHeader' id='idNMCComment' >
+                            </div>
+                        </div>
+                        <br>
+                        <div class='row'>
+                            <div class='col-md-3'>
+                                <label>PTW</label>
+                            </div>
+                            <div class='col-md-6'>
+                                <input type='checkbox' class='clsInputHeader' id='idPTW' >
+                            </div>
+                        </div>
+                        <br>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="divReviewer">
+                    <div class='col-md-6'>
+                        <div class='row'>
+                            <div class='col-md-3'>
+                                <label>Assign to another Implementer</label>
+                            </div>
+                            <div class='col-md-6'>
+                                <input type='checkbox' class='clsInputHeader' id='idAssignToOtherImp' >
+                            </div>
+                        </div>
+                        <br>
+                        <div class='row'>
+                            <div class='col-md-3'>
+                                <label>Requester Manager</label>
+                            </div>
+                            <div class='col-md-6'>
+                                <input type='text' class='form-control clsInputHeader' id='idRequesterManager' disabled='disabled'>
+                            </div>
+                        </div>
+                        <br>
+                        <div class='row clsDivImplementer' style="display: none">
+                            <div class='col-md-3'>
+                                <label>Implementer</label>
+                            </div>
+                            <div class='col-md-6'>
+                                <input type='text' class='form-control clsInputHeader' id='idImplementer'>
+                            </div>
+                        </div>
+                        <br class='clsDivImplementer' style="display: none">
+                        <div class='row'>
+                            <div class='col-md-3'>
+                                <label>HOD</label>
+                            </div>
+                            <div class='col-md-6'>
+                                <input type='text' class='form-control clsInputHeader' id='idHOD' disabled='disabled'>
+                            </div>
+                        </div>
+                        <br>
+                        <div class='row'>
+                            <div class='col-md-3'>
+                                <label>Person to Inform (Optional)</label>
+                            </div>
+                            <div class='col-md-6'>
+                                <input type='text' class='form-control clsInputHeader' id='idPersontoInform'>
+                            </div>
+                        </div>
+                        <br>
+                    </div>
+                </div>
+                <!-- #4 -->
+                <div class="tab-pane fade" id="divChangeDet">
+                    <div class='col-md-12'>
+                        <div class='row'>
+                            <div class='col-md-2'>
+                                <label>Justification of Change</label>
+                            </div>
+                            <div class='col-md-8'>
+                                <textarea class="form-control rounded-0" id="idJustiChange" rows="4"></textarea>
+                            </div>
+                        </div>
+                        <br>
+                        <div class='row row-header'>
+                            <div class='col-md-3'>
+                                <label data-toggle="collapse" data-target="#collapseSAE" aria-expanded="true" aria-controls="collapseSAE"><b>SYSTEM AND EQUIPMENT</b></label>
+                            </div>
+                        </div>
+                        <br>
+                        <div id="collapseSAE" class="collapse container show" aria-labelledby="heading4" data-parent="#divChangeDet">
+                            <div class='row' style=>
+                                <div class='col-md-2'>
+                                    <label>Hardware</label>
+                                </div>
+                                <div class='col-md-3'>
+                                    <input type='text' class='form-control' id='idHardware'>
+                                </div>
+                            </div>
+                            <br>
+                            <div class='row' style=>
+                                <div class='col-md-2'>
+                                    <label>Purpose</label>
+                                </div>
+                                <div class='col-md-3'>
+                                    <input type='text' class='form-control' id='idPurpose'>
+                                </div>
+                            </div>
+                            <br>
+                            <div class='row' style=>
+                                <div class='col-md-2'>
+                                    <label>Action</label>
+                                </div>
+                                <div class='col-md-3'>
+                                    <select class="form-control" id="idSlctAction">
+                                        <option selected></option>
+                                        <option value="Installation">Installation</option>
+                                        <option value="Decommissioning">Decommissioning</option>
+                                        <option value="Modify">Modify</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <br>
+                            <div class='row clsDivSpecify' style="display:none">
+                                <div class='col-md-2'>
+                                    <label>Specify</label>
+                                </div>
+                                <div class='col-md-3'>
+                                    <input type='text' class='form-control' id='idSpecify'>
+                                </div>
+                            </div>
+                            <br class='clsDivSpecify'>
+                            <div class='row'>
+                                <div class='col-md-2'>
+                                    <label>Change Summary</label>
+                                </div>
+                                <div class='col-md-8'>
+                                    <textarea class="form-control rounded-0" id="idChangeSummary" rows="4"></textarea>
+                                </div>
+                            </div>
+                            <br>
+                        </div>
+
+                        <div class='row row-header'>
+                            <div class='col-md-4'>
+                                <label data-toggle="collapse" data-target="#collapseRARFIMC" aria-expanded="true" aria-controls="collapseRARFIMC"><b>RESOURCE AND REQUIRED FOR IMPLEMENTING CHANGE</b></label>
+                            </div>
+                        </div>
+                        <br>
+                        <div id="collapseRARFIMC" class="collapse container" aria-labelledby="heading4" data-parent="#divChangeDet">
+                            <div class='row'>
+                                <div class='col-md-2'>
+                                    <label>Personnel <br>(Internal & External)</label>
+                                </div>
+                                <div class='col-md-8'>
+                                    <table class="table table-striped">
+                                        <thead class="table-primary text-center">
+                                            <tr>
+                                                <th>Personnel Name</th>
+                                                <th>Department/Company</th>
+                                                <th>Personnel Contact No</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td><input type='text' class='form-control ' id='idPersonnelName1'></td>
+                                                <td><input type='text' class='form-control ' id='idPerDepartment1'></td>
+                                                <td><input type='text' class='form-control ' id='idPerContact1'></td>
+                                            </tr>
+                                            <tr>
+                                                <td><input type='text' class='form-control ' id='idPersonnelName2'></td>
+                                                <td><input type='text' class='form-control ' id='idPerDepartment2'></td>
+                                                <td><input type='text' class='form-control ' id='idPerContact2'></td>
+                                            </tr>
+                                            <tr>
+                                                <td><input type='text' class='form-control ' id='idPersonnelName3'></td>
+                                                <td><input type='text' class='form-control ' id='idPerDepartment3'></td>
+                                                <td><input type='text' class='form-control ' id='idPerContact3'></td>
+                                            </tr>
+                                            <tr>
+                                                <td><input type='text' class='form-control ' id='idPersonnelName4'></td>
+                                                <td><input type='text' class='form-control ' id='idPerDepartment4'></td>
+                                                <td><input type='text' class='form-control ' id='idPerContact4'></td>
+                                            </tr>
+                                            <tr>
+                                                <td><input type='text' class='form-control ' id='idPersonnelName5'></td>
+                                                <td><input type='text' class='form-control ' id='idPerDepartment5'></td>
+                                                <td><input type='text' class='form-control ' id='idPerContact5'></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <!-- #5 -->
+                <div class="tab-pane fade" id="divchangeProc">
+                    <div class="col-md-12">
+                        <div class='row row-header'>
+                            <div class='col-md-4'>
+                                <label><b>PROPOSED CHANGE PROCEDURE</b></label>
+                            </div>
+                        </div>                            
+                        <div class="accordion" id="accordionProcedure">
+                            <div class="row">
+                                <div class="clsAccheader">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        Pre Implementation
+                                        </button>
+                                    </h5>
+                                </div>
+                            
+                                <div id="collapseOne" class="collapse container show" aria-labelledby="headingOne" data-parent="#accordionProcedure">
+                                    <div class="col-md-8">
+                                        <div class='row '>
+                                            <div class='col-md-2'>
+                                                <label>vLookupId</label>
+                                            </div>
+                                            <div class='col-md-3'>
+                                                <input type='text' class='form-control' id='idPreVlookUp' >
+                                            </div>
+                                        </div>
+                                        <div class='row'>
+                                            <div class='col-md-2'>
+                                                <label>Start Date</label>
+                                            </div>
+                                            <div class='col-md-3'>
+                                                <input type='date' class='form-control' id='idStartDatePreImp' >
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class='row'>
+                                            <div class='col-md-2'>
+                                                <label>End Date</label>
+                                            </div>
+                                            <div class='col-md-3'>
+                                                <input type='date' class='form-control' id='idEndDatePreImp' >
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class='row'>
+                                            <div class='col-md-2'>
+                                                <label>Action Taken</label>
+                                            </div>
+                                            <div class='col-md-5'>
+                                                <input type='text' class='form-control' id='idActionTakenPreImp' >
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class='row'>
+                                            <div class='col-md-2'>
+                                                <label>Implementer</label>
+                                            </div>
+                                            <div class='col-md-5'>
+                                                <input type='text' class='form-control' id='idImplementerPreImp' >
+                                            </div>
+                                        </div>
+                                        <br>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="clsAccheader">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseOne">
+                                        Implementation
+                                        </button>
+                                    </h5>
+                                </div>
+                            
+                                <div id="collapseTwo" class="collapse container" aria-labelledby="headingTwo" data-parent="#accordionProcedure">
+                                    <div class="col-md-8">
+                                        <div class='row'>
+                                            <div class='col-md-2'>
+                                                <label>Start Date</label>
+                                            </div>
+                                            <div class='col-md-4'>
+                                                <input type='date' class='form-control' id='idStartDateImp' >
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class='row'>
+                                            <div class='col-md-2'>
+                                                <label>End Date</label>
+                                            </div>
+                                            <div class='col-md-4'>
+                                                <input type='date' class='form-control' id='idEndDateImp' >
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class='row'>
+                                            <div class='col-md-2'>
+                                                <label>Action Taken</label>
+                                            </div>
+                                            <div class='col-md-5'>
+                                                <input type='text' class='form-control' id='idActionTakenImp' >
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class='row'>
+                                            <div class='col-md-2'>
+                                                <label>Implementer</label>
+                                            </div>
+                                            <div class='col-md-5'>
+                                                <input type='text' class='form-control' id='idImplementerImp' >
+                                            </div>
+                                        </div>
+                                        <br>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="clsAccheader">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseOne">
+                                        Post Implementation
+                                        </button>
+                                    </h5>
+                                </div>
+                            
+                                <div id="collapseThree" class="collapse container" aria-labelledby="headingThree" data-parent="#accordionProcedure">
+                                    <div class="col-md-8">
+                                        <div class='row'>
+                                            <div class='col-md-2'>
+                                                <label>Start Date</label>
+                                            </div>
+                                            <div class='col-md-4'>
+                                                <input type='date' class='form-control' id='idStartDatePostImp' >
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class='row'>
+                                            <div class='col-md-2'>
+                                                <label>End Date</label>
+                                            </div>
+                                            <div class='col-md-4'>
+                                                <input type='date' class='form-control' id='idEndDatePostImp' >
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class='row'>
+                                            <div class='col-md-2'>
+                                                <label>Action Taken</label>
+                                            </div>
+                                            <div class='col-md-5'>
+                                                <input type='text' class='form-control' id='idActionTakenPostImp' >
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class='row'>
+                                            <div class='col-md-2'>
+                                                <label>Implementer</label>
+                                            </div>
+                                            <div class='col-md-5'>
+                                                <input type='text' class='form-control' id='idImplementerPostImp' >
+                                            </div>
+                                        </div>
+                                        <br>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class='row row-header'>
+                            <div class='col-md-4'>
+                                <label><b>IMPACT ASSESSMENT</b></label>
+                            </div>
+                        </div>
+                        <div class="accordion" id="accordionProcedure">
+                            <div class="row">
+                                <div class="clsAccheader">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+                                        IMPACT ASSESSMENT
+                                        </button>
+                                    </h5>
+                                </div>
+                            
+                                <div id="collapseFour" class="collapse container" aria-labelledby="heading4" data-parent="#accordionProcedure">
+                                    <div class="col-md-8">
+                                        <div class='row'>
+                                            <div class='col-md-2'>
+                                                <label>Impact Description</label>
+                                            </div>
+                                            <div class='col-md-5'>
+                                                <input type='text' class='form-control' id='idImpactDesc' >
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class='row'>
+                                            <div class='col-md-2'>
+                                                <label>Scale</label>
+                                            </div>
+                                            <div class='col-md-5'>
+                                                <input type='text' class='form-control' id='idImpactScale' >
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class='row'>
+                                            <div class='col-md-2'>
+                                                <label>Implementer</label>
+                                            </div>
+                                            <div class='col-md-5'>
+                                                <input type='text' class='form-control' id='idImpactMitigationAction' >
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- #6 -->
+                <div class="tab-pane fade" id="divAttach">
+                    <div class='col-md-12'>
+                        <div class='row'>
+                            <div class='col-md-1'>
+                                <label>Attachment</label>
+                            </div>
+                            <div class='col-md-5'>
+                                <input id="inputFile" type="file" class="form-control-file" >
+                            </div>
+                        </div>
+                        <br>
+                    </div>
+                </div>
+                <!-- #7 -->
+                <div class="tab-pane fade" id="divFallBack">
+                    <div class='col-md-12'>
+                        <div class='row'>
+                            <div class='col-md-2'>
+                                <label>Fallback Procedures</label>
+                            </div>
+                            <div class='col-md-8'>
+                                <textarea class="form-control rounded-0" id="idFallBack" rows="4"></textarea>
+                            </div>
+                        </div>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="divBtnRow ">
+            <div class="row float-right">
+                <!-- <a class="btn btn-outline-primary btn-rounded waves-effect confirmLink">Discard</a>
+                <a class="btn btn-outline-primary btn-rounded waves-effect" onclick="saveAsDraft()">Save as Draft</a>
+                <a class="btn btn-outline-primary btn-rounded waves-effect" onclick="Submit()">Submit</a> -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <div class="row">
+        <div class="modal fade" id="idModalNoData" role="dialog" data-keyboard="false" data-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="text-center">
+                            <img src="https://measatsatellite.sharepoint.com/sites/ECM/SiteAssets/eCM/IMAGES/warning-danger.png" alt="warning-image">
+                            </div>
+                            <div class='clsModalContent text-center'>
+
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="closeModal()">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <div class="row">
+        <div class="modal fade" id="idModalDiscard" role="dialog" data-keyboard="false" data-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="text-center">
+                            <img src="https://measatsatellite.sharepoint.com/sites/ECM/SiteAssets/eCM/IMAGES/warning.png" alt="warning-image">
+                            </div>
+                            <div class='clsModalContent text-center'>
+
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="noSave()">Yes</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="close()">No</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div id="dialog" title="Confirmation Required">
+        Are you sure to disregard this item?
+    </div> -->
+
+    <!-- <div id="dialogSave" title="Confirmation Required">
+        Are you sure to SUBMIT this item?
+    </div> -->
+</body>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/js/mdb.min.js"></script>
+
+<script type='text/javascript' src='https://measatsatellite.sharepoint.com/sites/ECM/SiteAssets/eCM/JS/EditForm.js'></script>
+<script type='text/javascript' src='https://measatsatellite.sharepoint.com/sites/ECM/SiteAssets/eCM/JS/ChangeDateTime.js'></script>
+<!-- <script type='text/javascript' src='https://measatsatellite.sharepoint.com/sites/ECM/SiteAssets/eCM/JS/SaveasDraft.js'></script> -->
+<!-- <script type='text/javascript' src='https://measatsatellite.sharepoint.com/sites/ECM/SiteAssets/eCM/JS/Submit.js'></script> -->
+</html>

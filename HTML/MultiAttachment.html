@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>addNew</title>
+<style>
+.ms-webpartzone-cell{
+	margin-bottom : 0px;
+}
+#tabsContainer{margin-left:5px;margin-top:-15px;}
+</style>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://measatsatellite.sharepoint.com/sites/ECM/SiteAssets/eCM/JS/multifile.js"></script>
+
+<script>
+	$(document).ready(function(){
+		// alert('test');
+		$('.divTitle').remove();
+		$('.multifile').multifile();
+		$('.multifile').multifile({
+			container: "#upload-container",
+			template: function (file) {
+				var fileName = file.name;
+				var fileExtension = file.name.split('.').pop();
+
+				var result =
+					'<p class="uploaded_image">' +
+					'<a href="#" class="multifile_remove_input">Close me</a>' +
+					'<span class="filename">$fileName ($fileExtension)</span>' +
+					'</p>';
+
+				result = result.replace('$fileExtension', fileExtension).replace('$fileName', fileName)
+
+				return $(result);
+			}
+		});
+
+		// var fileArr = [];
+		// $('.multifile').change(function () {
+		// 	console.log(this.value);
+		// 	console.log(this.files);
+		// 	$.each(this.files, function (i, file) {
+		// 		fileArr.push(file);
+		// 		// console.log(file)
+		// 	});
+		// });
+		// console.log(fileArr);
+	});
+
+	function Confirm(){
+		alert('gg');
+		//console.log($('.multifile').prop("files"));
+		// var arraycount = 0;
+		// var files = $("input.multifile")[0].files;
+
+		// for (var i = 0; i < files.length; i++)
+		// {
+		// 	alert(files[i].name);
+		// }
+
+		// $('#attachFilesHolder > input').each(
+		// 	function(index){  
+		// 		var input = $(this);
+		// 		console.log('Type: ' + input.attr('type') + 'Name: ' + input.attr('name') + 'Value: ' + input.val());
+		// 	}
+		// );
+		var data = [];  
+		var fileArray = []; 
+		debugger;
+		console.log($("#attachFilesHolder input"));
+		$("#attachFilesHolder input").each(function () {  
+			alert('please');
+			fileArray.push({ "Attachment": $(this)[0].files[0]})
+			// if ($(this)[0].files[0]) {  
+			// 	fileArray.push({ "Attachment": $(this)[0].files[0] });  
+			// }  
+		}); console.log(fileArray);
+		// $("#attachFilesHolder input.multifile").each(function(){
+
+		// 	console.log($(this).prop("files"));
+		// 	// count +1;
+		// });
+		// console.log(count);
+	}
+</script>
+</head>
+
+<body>
+	<div class="row" style="padding:20px 20px">
+		<div class="files" id="attachFilesHolder ">  
+			<!-- <input id="file_input" type="file" name="files[]">   -->
+			<input class="multifile" type="file" name="files[]">
+		</div> 
+		</br>
+		<div class="row">
+			<a class="btn btn-rounded waves-effect" onclick="Confirm()">Submit</a>
+		</div>
+	</div>
+</body>
+
+</html>

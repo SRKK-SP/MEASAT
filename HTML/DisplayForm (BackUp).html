@@ -1,0 +1,836 @@
+﻿<!DOCTYPE html>
+<html>
+<title>Display e-CM</title>
+
+<link rel='stylesheet' href='https://measatsatellite.sharepoint.com/sites/ECM/SiteAssets/eCM/CSS/Form.css'>
+<link rel='stylesheet' href='https://measatsatellite.sharepoint.com/sites/ECM/SiteAssets/eCM/CSS/displayForm.css'>
+<link rel='stylesheet' href='https://measatsatellite.sharepoint.com/sites/ECM/SiteAssets/eCM/CSS/perfect-scrollbar.css'>
+<link rel='stylesheet' href='https://measatsatellite.sharepoint.com/sites/ECM/SiteAssets/eCM/CSS/animate.css'>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css'>
+
+<body>
+    <div class="container">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#divChangeInfo">CHANGE INFORMATION</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#divGenInfo">
+                    GENERAL INFORMATION</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#divReviewer">
+                    REVIEWER</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#divChangeDet">
+                    CHANGE DETAILS</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#divchangeProc">
+                    CHANGE PROCEDURES</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#divAttach">ATTACHMENTS</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#divFallBack">FALLBACK PROCEDURES</a>
+            </li>
+        </ul>
+
+        <div class="divChange">
+            <div class="tab-content">
+                <div class="tab-pane fade in active show" id="divChangeInfo">
+
+                    <!-- TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST  -->
+                    <script>
+
+                        (function ($) {
+                            "use strict";
+                            $('.column100').on('mouseover', function () {
+                                var table1 = $(this).parent().parent().parent();
+                                var table2 = $(this).parent().parent();
+                                var verTable = $(table1).data('vertable') + "";
+                                var column = $(this).data('column') + "";
+
+                                $(table2).find("." + column).addClass('hov-column-' + verTable);
+                                $(table1).find(".row100.head ." + column).addClass('hov-column-head-' + verTable);
+                            });
+
+                            $('.column100').on('mouseout', function () {
+                                var table1 = $(this).parent().parent().parent();
+                                var table2 = $(this).parent().parent();
+                                var verTable = $(table1).data('vertable') + "";
+                                var column = $(this).data('column') + "";
+
+                                $(table2).find("." + column).removeClass('hov-column-' + verTable);
+                                $(table1).find(".row100.head ." + column).removeClass('hov-column-head-' + verTable);
+                            });
+
+
+                        })(jQuery);
+                    </script>
+
+                    <div class="limiter">
+
+                        <div class="container-table100">
+                            <div class="wrap-table100">
+
+                                <div class="table100 ver5">
+                                    <div class="table100-body js-pscroll">
+                                        <table>
+                                            <colgroup>
+                                                <col style="width:50%">
+                                                <col style="width:50%">
+                                            </colgroup>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="column1">Criticality</td>
+                                                    <td class="column2"><span id="idSlctCriticality"></span></td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td class="column1">Area</td>
+                                                    <td class="column2"><span id="idSlctArea"></span></td>
+                                                </tr>
+
+                                                <tr class='clsDivAreaOthers' style="display: none !important;">
+                                                    <td class="column1">Area (Others)</td>
+                                                    <td class="column2"><span id="idAreaOthers"></span></td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td class="column1">Change Category</td>
+                                                    <td class="column2"><span id="idChangeCat"></span></td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td class="column1">Change Type</td>
+                                                    <td class="column2"><span id="idChangeType"></span></td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td class="column1">Platfotm</td>
+                                                    <td class="column2"><span id="idPlatform"></span></td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td class="column1">Platform Area</td>
+                                                    <td class="column2"><span id="idPlatformArea"></span></td>
+                                                </tr>
+
+                                                <tr class='clsDivPlatFormOthers' style="display: none !important;">
+                                                    <td class="column1">Platform Area (Others)</td>
+                                                    <td class="column2"><span id="idPlatFormAreaOthers"></span></td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td class="column1">Customer</td>
+                                                    <td class="column2"><span id="idCustomer"></span></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+                    <script>
+                        $('.js-pscroll').each(function () {
+                            var ps = new PerfectScrollbar(this);
+
+                            $(window).on('resize', function () {
+                                ps.update();
+                            })
+                        });
+
+
+                    </script>
+                    <!-- TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST  -->
+
+                    <div class='col-md-6'>
+
+                        <div class='row'>
+                            <div class='col-md-3'>
+                                <label>Criticality</label>
+                            </div>
+                            <div class='col-md-6'>
+                                <span class="displayViewData" id="idSlctCriticality"></span>
+                            </div>
+                        </div>
+                        <br>
+                        <div class='row'>
+                            <div class='col-md-3'>
+                                <label>Area</label>
+                            </div>
+                            <div class='col-md-6'>
+                                <span class="displayViewData" id="idSlctArea"></span>
+                            </div>
+                        </div>
+                        <br>
+                        <div class='row clsDivAreaOthers' style="display: none;">
+                            <div class='col-md-3'>
+                                <label>Area (Others)</label>
+                            </div>
+                            <div class='col-md-6'>
+                                <span class="displayViewData" id="idAreaOthers"></span>
+                            </div>
+                        </div>
+                        <br class='clsDivAreaOthers' style="display: none;">
+                        <div class='row'>
+                            <div class='col-md-3'>
+                                <label>Change Category</label>
+                            </div>
+                            <div class='col-md-6'>
+                                <span class="displayViewData" id="idChangeCat"></span>
+                            </div>
+                        </div>
+                        <br>
+                        <div class='row'>
+                            <div class='col-md-3'>
+                                <label>Change Type</label>
+                            </div>
+                            <div class='col-md-6'>
+                                <span class="displayViewData" id="idChangeType"></span>
+                            </div>
+                        </div>
+                        <br>
+                        <div class='row'>
+                            <div class='col-md-3'>
+                                <label>Platform</label>
+                            </div>
+                            <div class='col-md-6'>
+                                <span class="displayViewData" id="idPlatform"></span>
+                            </div>
+                        </div>
+                        <br>
+                        <div class='row'>
+                            <div class='col-md-3'>
+                                <label>Platform Area</label>
+                            </div>
+                            <div class='col-md-6'>
+                                <span class="displayViewData" id="idPlatformArea"></span>
+                            </div>
+                        </div>
+                        <br>
+                        <div class='row clsDivPlatFormOthers' style="display: none !important;">
+                            <div class='col-md-3'>
+                                <label>Platform Area (Others)</label>
+                            </div>
+                            <div class='col-md-6'>
+                                <span class="displayViewData" id="idPlatFormAreaOthers"></span>
+                            </div>
+                        </div>
+                        <br class='clsDivPlatFormOthers'>
+                        <div class='row'>
+                            <div class='col-md-3'>
+                                <label>Customer</label>
+                            </div>
+                            <div class='col-md-6'>
+                                <span class="displayViewData" id='idCustomer'></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="divGenInfo">
+                    <div class='col-md-6'>
+                        <div class='row'>
+                            <div class='col-md-3'>
+                                <label>Title</label>
+                            </div>
+                            <div class='col-md-6'>
+                                <span class="displayViewData" id='idTitle'></span>
+                            </div>
+                        </div>
+                        <br>
+                        <div class='row'>
+                            <div class='col-md-3'>
+                                <label>Requester Name</label>
+                            </div>
+                            <div class='col-md-6'>
+                                <span class="displayViewData" id='idRequesterName'></span>
+                            </div>
+                        </div>
+                        <br>
+                        <div class='row'>
+                            <div class='col-md-3'>
+                                <label>Department</label>
+                            </div>
+                            <div class='col-md-6'>
+                                <span class="displayViewData" id='idDepartment'></span>
+                            </div>
+                        </div>
+                        <br>
+                        <div class='row'>
+                            <div class='col-md-3'>
+                                <label>Contact No</label>
+                            </div>
+                            <div class='col-md-6'>
+                                <span class="displayViewData" id='idContact'></span>
+                            </div>
+                        </div>
+                        <br>
+                        <div class='row'>
+                            <div class='col-md-3'>
+                                <label>Date Requested</label>
+                            </div>
+                            <div class='col-md-4'>
+                                <span class="displayViewData" id='idDateReq'></span>
+                            </div>
+                            <div class='col-md-2'>
+                                <span class="displayViewData" id='idTimeReq'></span>
+                            </div>
+                        </div>
+                        <br>
+                        <div class='row'>
+                            <div class='col-md-3'>
+                                <label>End Date</label>
+                            </div>
+                            <div class='col-md-4'>
+                                <span class="displayViewData" id='idEndDate'></span>
+                            </div>
+                            <div class='col-md-2'>
+                                <span class="displayViewData" id='idEndTime'></span>
+                            </div>
+                        </div>
+                        <br>
+                        <div class='row'>
+                            <div class='col-md-3'>
+                                <label>Duration</label>
+                            </div>
+                            <div class='col-md-6'>
+                                <span class="displayViewData" id='idDuration'></span>
+                            </div>
+
+                        </div>
+                        <br>
+                        <div class='row'>
+                            <div class='col-md-3'>
+                                <label>External Customer Notification</label>
+                            </div>
+                            <div class='col-md-6'>
+                                <span class="displayViewData" id='idECN'></span>
+                            </div>
+                        </div>
+                        <div class="row clsDivExtCustomer" style="display:none;">
+                            <div class='col-md-3'>
+                                <label>Email Content</label>
+                            </div>
+                            <div class='col-md-6'>
+                                <span class="displayViewData" id='idEmailContent'></span>
+                            </div>
+                        </div>
+                        <br>
+                        <div class='row'>
+                            <div class='col-md-3'>
+                                <label>NMC Participation</label>
+                            </div>
+                            <div class='col-md-6'>
+                                <span class="displayViewData" id='idNMC'></span>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row clsDivNMCComment">
+                            <div class='col-md-3'>
+                                <label>Comment</label>
+                            </div>
+                            <div class='col-md-6'>
+                                <span class="displayViewData" id='idNMCComment'></span>
+                            </div>
+                        </div>
+                        <br>
+                        <div class='row'>
+                            <div class='col-md-3'>
+                                <label>PTW</label>
+                            </div>
+                            <div class='col-md-6'>
+                                <span class="displayViewData" id='idPTW'></span>
+                            </div>
+                        </div>
+                        <br>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="divReviewer">
+                    <div class='col-md-6'>
+                        <div class='row'>
+                            <div class='col-md-3'>
+                                <label>Assign to another Implementer</label>
+                            </div>
+                            <div class='col-md-6'>
+                                <span class="displayViewData" id='idAssignToOtherImp'></span>
+                            </div>
+                        </div>
+                        <br>
+                        <div class='row'>
+                            <div class='col-md-3'>
+                                <label>Requester Manager</label>
+                            </div>
+                            <div class='col-md-6'>
+                                <input type='text' class='form-control clsInputHeader' id='idRequesterManager'
+                                    disabled='disabled'>
+                            </div>
+                        </div>
+                        <br>
+                        <div class='row clsDivImplementer' style="display: none">
+                            <div class='col-md-3'>
+                                <label>Implementer</label>
+                            </div>
+                            <div class='col-md-6'>
+                                <span class="displayViewData" id='idImplementer'>
+                            </div>
+                        </div>
+                        <br class='clsDivImplementer' style="display: none">
+                        <div class='row'>
+                            <div class='col-md-3'>
+                                <label>HOD</label>
+                            </div>
+                            <div class='col-md-6'>
+                                <input type='text' class='form-control clsInputHeader' id='idHOD' disabled='disabled'>
+                            </div>
+                        </div>
+                        <br>
+                        <div class='row'>
+                            <div class='col-md-3'>
+                                <label>Person to Inform (Optional)</label>
+                            </div>
+                            <div class='col-md-6'>
+                                <span class="displayViewData" id='idPersontoInform'></span>
+                            </div>
+                        </div>
+                        <br>
+                    </div>
+                </div>
+                <!-- #4 -->
+                <div class="tab-pane fade" id="divChangeDet">
+                    <div class='col-md-12'>
+                        <div class='row'>
+                            <div class='col-md-2'>
+                                <label>Justification of Change</label>
+                            </div>
+                            <div class='col-md-8'>
+                                <span class="displayViewData" id="idJustiChange"></span>
+                            </div>
+                        </div>
+                        <br>
+                        <div class='row row-header'>
+                            <div class='col-md-3'>
+                                <label data-toggle="collapse" data-target="#collapseSAE" aria-expanded="true"
+                                    aria-controls="collapseSAE">SYSTEM AND EQUIPMENT</label>
+                            </div>
+                        </div>
+                        <br>
+                        <div id="collapseSAE" class="collapse container show" aria-labelledby="heading4"
+                            data-parent="#divChangeDet">
+                            <div class='row' style=>
+                                <div class='col-md-2'>
+                                    <label>Hardware</label>
+                                </div>
+                                <div class='col-md-3'>
+                                    <span class="displayViewData" id='idHardware'></span>
+                                </div>
+                            </div>
+                            <br>
+                            <div class='row' style=>
+                                <div class='col-md-2'>
+                                    <label>Purpose</label>
+                                </div>
+                                <div class='col-md-3'>
+                                    <span class="displayViewData" id='idPurpose'></span>
+                                </div>
+                            </div>
+                            <br>
+                            <div class='row' style=>
+                                <div class='col-md-2'>
+                                    <label>Action</label>
+                                </div>
+                                <div class='col-md-3'>
+                                    <span class="displayViewData" id="idSlctAction"></span>
+                                </div>
+                            </div>
+                            <br>
+                            <div class='row clsDivSpecify' style="display:none">
+                                <div class='col-md-2'>
+                                    <label>Specify</label>
+                                </div>
+                                <div class='col-md-3'>
+                                    <span class="displayViewData" id='idSpecify'></span>
+                                </div>
+                            </div>
+                            <br class='clsDivSpecify'>
+                            <div class='row'>
+                                <div class='col-md-2'>
+                                    <label>Change Summary</label>
+                                </div>
+                                <div class='col-md-8'>
+                                    <span class="displayViewData" id="idChangeSummary"></span>
+                                </div>
+                            </div>
+                            <br>
+                        </div>
+
+                        <div class='row row-header'>
+                            <div class='col-md-4'>
+                                <label data-toggle="collapse" data-target="#collapseRARFIMC" aria-expanded="true"
+                                    aria-controls="collapseRARFIMC">RESOURCE REQUIRED FOR IMPLEMENTING
+                                    CHANGE</label>
+                            </div>
+                        </div>
+                        <br>
+                        <div id="collapseRARFIMC" class="collapse container" aria-labelledby="heading4"
+                            data-parent="#divChangeDet">
+                            <div class='row'>
+                                <div class='col-md-2'>
+                                    <label>Personnel <br>(Internal & External)</label>
+                                </div>
+                                <div class='col-md-8'>
+                                    <table class="table table-striped personnel-data">
+                                        <thead class="text-center">
+                                            <tr>
+                                                <th width="33%">Personnel Name</th>
+                                                <th width="33%">Department/Company</th>
+                                                <th width="33%">Personnel Contact No</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="text-center">
+                                            <tr>
+                                                <td><span class=' displayViewData ' id='idPersonnelName1'></span></td>
+                                                <td><span class=' displayViewData ' id='idPerDepartment1'></span></td>
+                                                <td><span class=' displayViewData ' id='idPerContact1'></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span class=' displayViewData ' id='idPersonnelName2'></span></td>
+                                                <td><span class=' displayViewData ' id='idPerDepartment2'></span></td>
+                                                <td><span class=' displayViewData ' id='idPerContact2'></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span class=' displayViewData ' id='idPersonnelName3'></span></td>
+                                                <td><span class=' displayViewData ' id='idPerDepartment3'></span></td>
+                                                <td><span class=' displayViewData ' id='idPerContact3'></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span class=' displayViewData ' id='idPersonnelName4'></span></td>
+                                                <td><span class=' displayViewData ' id='idPerDepartment4'></span></td>
+                                                <td><span class=' displayViewData ' id='idPerContact4'></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span class=' displayViewData ' id='idPersonnelName5'></span></td>
+                                                <td><span class=' displayViewData ' id='idPerDepartment5'></span></td>
+                                                <td><span class=' displayViewData ' id='idPerContact5'></span></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- #5 -->
+                <div class="tab-pane fade" id="divchangeProc">
+                    <div class="col-md-12">
+                        <div class='row row-header'>
+                            <div class='col-md-4'>
+                                <label><b>PROPOSED CHANGE PROCEDURE</b></label>
+                            </div>
+                        </div>
+                        <div class="accordion" id="accordionProcedure">
+                            <div class="row">
+                                <div class="clsAccheader">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link" type="button" data-toggle="collapse"
+                                            data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            Pre Implementation
+                                        </button>
+                                    </h5>
+                                </div>
+
+                                <div id="collapseOne" class="collapse container show" aria-labelledby="headingOne"
+                                    data-parent="#accordionProcedure">
+                                    <table class="table table-striped tblpcr" id="tblPreImp">
+                                        <thead class='text-center'>
+                                            <tr>
+                                                <th>Start Date</th>
+                                                <th>End Date</th>
+                                                <th>Action taken</th>
+                                                <th>Implementer</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tbodyPreImp">
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="clsAccheader">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link" type="button" data-toggle="collapse"
+                                            data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseOne">
+                                            Implementation
+                                        </button>
+                                    </h5>
+                                </div>
+
+
+                                <div id="collapseTwo" class="collapse container" aria-labelledby="headingTwo"
+                                    data-parent="#accordionProcedure">
+                                    <table class="table table-striped tblpcr" id="tblImp">
+                                        <thead class='text-center'>
+                                            <tr>
+                                                <th>Start Date</th>
+                                                <th>End Date</th>
+                                                <th>Action taken</th>
+                                                <th>Implementer</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tbodyImp">
+
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="clsAccheader">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link" type="button" data-toggle="collapse"
+                                            data-target="#collapseThree" aria-expanded="true"
+                                            aria-controls="collapseOne">
+                                            Post Implementation
+                                        </button>
+                                    </h5>
+                                </div>
+
+
+                                <div id="collapseThree" class="collapse container" aria-labelledby="headingThree"
+                                    data-parent="#accordionProcedure">
+                                    <table class="table table-striped tblpcr" id="tblPostImp">
+                                        <thead class='text-center'>
+                                            <tr>
+                                                <th>Start Date</th>
+                                                <th>End Date</th>
+                                                <th>Action taken</th>
+                                                <th>Implementer</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tbodyPostImp">
+
+                                        </tbody>
+                                    </table>
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <div class='row row-header'>
+                            <div class='col-md-4'>
+                                <label><b>IMPACT ASSESSMENT</b></label>
+                            </div>
+                        </div>
+                        <div class="accordion" id="accordionProcedure">
+                            <div class="row">
+                                <div class="clsAccheader">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link" type="button" data-toggle="collapse"
+                                            data-target="#collapseFour" aria-expanded="true"
+                                            aria-controls="collapseFour">
+                                            IMPACT ASSESSMENT
+                                        </button>
+                                    </h5>
+                                </div>
+
+                                <div id="collapseFour" class="collapse container" aria-labelledby="heading4"
+                                    data-parent="#accordionProcedure">
+                                    <table class="table table-striped tblpcr" id="tblImpact">
+                                        <thead class='text-center'>
+                                            <tr>
+                                                <th>Impact Description</th>
+                                                <th>Scale</th>
+                                                <th>Mitigation Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tbodyImpact">
+
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- #6 -->
+                <div class="tab-pane fade" id="divAttach">
+                    <div class='col-md-12'>
+                        <div class='row'>
+                            <div class='col-md-2'>
+                                <label>Attachment Items</label>
+                            </div>
+                            <div class='col-md-5' id="attItems">
+                            </div>
+                        </div>
+                        <br>
+                    </div>
+                </div>
+                <!-- #7 -->
+                <div class="tab-pane fade" id="divFallBack">
+                    <div class='col-md-12'>
+                        <div class='row'>
+                            <div class='col-md-2'>
+                                <label>Fallback Procedures</label>
+                            </div>
+                            <div class='col-md-8'>
+                                <span class="displayViewData" id="idFallBack"></span>
+                                <!-- <textarea class="form-control rounded-0" id="idFallBack" rows="4"></textarea> -->
+                            </div>
+                        </div>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="divBtnRow ">
+            <div class="row float-right">
+                <a class="btn btn-outline-primary btn-rounded waves-effect clsbtnPrint">Print</a>
+                <a id="idbtnDuplicate" class="btn btn-outline-primary btn-rounded waves-effect hidden"
+                    onclick='openConfirm()'>Duplicate</a>
+                <a class="btn btn-outline-primary btn-rounded waves-effect clsbtnEdit" onclick="gotoEdit()">Edit</a>
+                <!-- 
+                    <a class="btn btn-outline-primary btn-rounded waves-effect" onclick="saveAsDraft()">Save as Draft</a>
+                    <a class="btn btn-outline-primary btn-rounded waves-effect" onclick="Submit()">Submit</a> -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <div class="row">
+        <div class="modal fade" id="idModalNoData" role="dialog" data-keyboard="false" data-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="text-center">
+                            <img src="https://measatsatellite.sharepoint.com/sites/ECM/SiteAssets/eCM/IMAGES/warning-danger.png"
+                                alt="warning-image">
+                        </div>
+                        <div class='clsModalContent text-center'>
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal"
+                            onclick="closeModal()">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <div class="row">
+        <div class="modal fade" id="idModalDiscard" role="dialog" data-keyboard="false" data-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="text-center">
+                            <img src="https://measatsatellite.sharepoint.com/sites/ECM/SiteAssets/eCM/IMAGES/warning.png"
+                                alt="warning-image">
+                        </div>
+                        <div class='clsModalContent text-center'>
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal"
+                            onclick="noSave()">Yes</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="close()">No</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Duplicate -->
+    <div class="row">
+        <div class="modal fade" id="idModalDuplicate" role="dialog" data-keyboard="false" data-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="text-center">
+                            <img src="https://measatsatellite.sharepoint.com/sites/ECM/SiteAssets/eCM/IMAGES/warning.png"
+                                alt="warning-image">
+                        </div>
+                        <div class='clsModalContentDuplicate text-center'>
+                            <h4>Are you sure to duplicate this item?</h4>
+                            <p class="text-warning text-left ml-3">Note: This item will be duplicate into a new item.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal"
+                            onclick="duplicateItem()">Yes</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modals Success-->
+    <div class="row">
+        <div class="modal fade" id="idModalSuccess" role="dialog" data-keyboard="false">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="text-center">
+                            <img src="https://measatsatellite.sharepoint.com/sites/ECM/SiteAssets/eCM/IMAGES/success.png"
+                                alt="warning-success">
+                        </div>
+                        <div class='clsModalContentSubmit text-center'>
+
+                        </div>
+                    </div>
+                    <div class="modal-footer clsModalSuccessFooter">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modals DAnger -->
+    <div class="row">
+        <div class="modal fade" id="idModalDanger" role="dialog" data-keyboard="false">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-bodySuccess-danger">
+                        <div class="text-center">
+                            <img src="https://measatsatellite.sharepoint.com/sites/ECM/SiteAssets/eCM/IMAGES/success.png"
+                                alt="warning-success">
+                        </div>
+                        <div class='clsModalContentSubmit text-center'>
+
+                        </div>
+                    </div>
+                    <div class="modal-footer clsModalFailedFooter">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/js/mdb.min.js"></script>
+<script type='text/javascript'
+    src='https://measatsatellite.sharepoint.com/sites/ECM/SiteAssets/eCM/JS/DisplayForm.js'></script>
+<script type='text/javascript'
+    src='https://measatsatellite.sharepoint.com/sites/ECM/SiteAssets/eCM/JS/ChangeDateTime.js'></script>
+<!-- <script type='text/javascript' src='https://measatsatellite.sharepoint.com/sites/ECM/SiteAssets/eCM/JS/SaveasDraft.js'></script> -->
+<!-- <script type='text/javascript' src='https://measatsatellite.sharepoint.com/sites/ECM/SiteAssets/eCM/JS/Submit.js'></script> -->
+
+</html>

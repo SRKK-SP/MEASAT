@@ -1,0 +1,124 @@
+﻿/*PAGES CSS*/
+.page-Title h4{
+    font-size: 17px !important;
+    font-family: "Roboto", sans-serif !important;
+    color: #4e4e4e;
+    font-weight: 400;
+}
+.divTitle h4{
+    color:#4e4e4e;
+    text-decoration: underline;
+    text-decoration-color:#4285f4;
+    font-size: 16px !important;
+    font-family: "Roboto", sans-serif !important;
+}
+.divChange{
+    border: 1px solid #dee2e6;
+    border-top: none;
+    /* padding: 0px 10px; */
+}
+.divChange table td {/* //list data change font size */
+    font-size: 12.8px !important;
+}
+
+/*Tab Colours*/
+.nav-tabs > li > a.nav-link{
+    color: #4285f4 !important;
+}
+.nav-tabs > li > a.nav-link.active{
+    color: #fff!important;
+    background-color: #4285f4 !important;
+}
+.nav-tabs > li > a.nav-link.active:hover{
+    color:#fff !important;
+    background-color: #4285f4 !important;
+}
+
+/*Table Header*/
+.nav-tabs > li > a.nav-link.active {
+    color: #fff !important;
+    background-color: #4285f4;
+    border-color:#4285f4 !important;
+}
+
+.divChange th[class*='ms-vh-selectAllIcon']{/*REMOVE CHECKBOX*/
+    display: none !important;
+}
+.divChange td[class*='ms-vb-itmcbx']{/*REMOVE CHECKBOX*/
+    display: none !important;
+}
+td.ms-vb-user span span a{
+    color: #4e4e4e !important;
+}
+thead[id*='js-listviewthead'] {
+    color:#fff !important;
+    background-color:#ababab !important;
+}
+
+thead[id*='js-listviewthead'] a{
+    color:#4e4e4e !important;
+    font-size: 12.8px !important;
+    font-weight: 600;
+}
+thead[id*='js-listviewthead'] th:nth-child(2){
+    width:65px;
+}
+thead[id*='js-listviewthead'] th:nth-child(3){
+    width:75px;
+}
+thead[id*='js-listviewthead'] th:nth-child(4){
+    width:480px;
+}
+thead[id*='js-listviewthead'] th:nth-child(5){
+    width:95px;
+}
+thead[id*='js-listviewthead'] th:nth-child(6){
+    width:176px;
+}
+thead[id*='js-listviewthead'] th:nth-child(7){
+    width:110px;
+}
+
+
+
+/* //limit text for title and Requester Name */
+table tbody tr td.ms-vb-user:nth-child(7) span{
+    /* //color:#4285f4 !important; */
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    max-width: 143px !important;
+        
+}
+
+table tbody tr td div[field="LinkTitle"]{
+    display: block; /* or inline-block */
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    overflow: hidden;
+    max-height: 3.6em;
+    max-width: 253px !important;
+    line-height: 1.8em;
+    text-overflow: ellipsis !important;
+}
+
+/* delete attachment */
+.multifile_remove_input {
+    color: red;
+    text-decoration: none;
+}
+
+/*for pages navigation adjustment*/
+.dropdown-menu li {
+    padding: 10px 3px !important;
+}
+
+/*removes time from the Freeze items*/
+.ms-acal-time {
+	display: none !important;
+}
+
+/*remove time from CM items
+.ms-acal-sdiv {
+	display: none;
+}*/

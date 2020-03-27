@@ -1,0 +1,135 @@
+﻿<!DOCTYPE html>
+<html>
+<title>Print e-CM</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.3/jspdf.min.js"></script>
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+
+<!-- <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
+<link rel="stylesheet" type="text/css" media="print" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel='stylesheet' href='https://measatsatellite.sharepoint.com/sites/ECM/SiteAssets/eCM/CSS/Print.css'>
+
+<body>
+    <br>
+    <div style="background-color:#fff;" id="printContainer">
+        <div class="col-md-12 justify-content-center text-center" id="idheader">
+            <h5><b>CHANGE MANAGEMENT FORM</b></h5>
+        </div>
+        </br>
+        <div class="col-md-12 justify-content-center">
+            <table id="tblPrint" class="table-striped">
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+        </br>
+        <div class="col-md-12 justify-content-center">
+            <div class="text-center" style="background-color: azure;">
+                <h6><b>Personel</b></h6>
+            </div>
+            <table id="tblPersonel" style="width:100%;" class="table-striped">
+                <thead class='text-center '>
+                    <tr>
+                        <th width='33%'>Personel Name</th>
+                        <th width='33%'>Department/Company</th>
+                        <th width='33%'>Personel Contact No.</th>
+                    </tr>
+                </thead>
+                <tbody class='text-center'>
+
+                </tbody>
+            </table>
+        </div>
+        </br>
+        <div class="col-md-12 justify-content-center">
+            <div class="text-center" style="background-color: azure;width:100%;">
+                <h6><b>Pre Implementation</b></h6>
+            </div>
+            <table id="tblPreImp" style="width:100%;" class="table-striped">
+                <thead class='text-center'>
+                    <tr>
+                        <th width='15%'>Start Date</th>
+                        <th width='15%'>End Date</th>
+                        <th width='55%'>Action taken</th>
+                        <th width='15%'>Implementer</th>
+                    </tr>
+                </thead>
+                <tbody class='text-center'>
+
+                </tbody>
+            </table>
+        </div>
+        </br>
+        <div class="col-md-12 justify-content-center">
+            <div class="text-center" style="background-color: azure;">
+                <h6><b>Implementation</b></h6>
+            </div>
+            <table id="tblImp" style="width:100%;" class="table-striped">
+                <thead class='text-center'>
+                    <tr>
+                        <th width='15%'>Start Date</th>
+                        <th width='15%'>End Date</th>
+                        <th width='55%'>Action taken</th>
+                        <th width='15%'>Implementer</th>
+                    </tr>
+                </thead>
+                <tbody class='text-center'>
+
+                </tbody>
+            </table>
+        </div>
+        </br>
+        <div class="col-md-12 justify-content-center">
+            <div class="text-center" style="background-color: azure;">
+                <h6><b>Post Implementation</b></h6>
+            </div>
+            <table id="tblPostImp" style="width:100%;" class="table-striped">
+                <thead class='text-center'>
+                    <tr>
+                        <th width='15%'>Start Date</th>
+                        <th width='15%'>End Date</th>
+                        <th width='55%'>Action taken</th>
+                        <th width='15%'>Implementer</th>
+                    </tr>
+                </thead>
+                <tbody class='text-center'>
+
+                </tbody>
+            </table>
+        </div>
+        </br>
+        <div class="col-md-12 justify-content-center">
+            <div class="text-center" style="background-color: azure;;">
+                <h6><b>Impact Assessment</b></h6>
+            </div>
+            <table id="tblImpact" style="width:100%;" class="table-striped">
+                <thead class='text-center'>
+                    <tr>
+                        <th width='33%'>Impact Description</th>
+                        <th width='33%'>Scale</th>
+                        <th width='33%'>Mitigation Action</th>
+                    </tr>
+                </thead>
+                <tbody class='text-center'>
+
+                </tbody>
+            </table>
+        </div>
+        </br>
+        <div class="col-md-12 justify-content-center">
+            <div class="col-md-12">
+                <table id="tblFallback">
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+    </div>
+
+
+</body>
+<script type="text/javascript" src="https://measatsatellite.sharepoint.com/sites/ECM/SiteAssets/eCM/JS/Print.js"></script>
+</html>

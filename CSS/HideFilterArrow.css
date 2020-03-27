@@ -1,0 +1,36 @@
+﻿<style>
+
+/*HOD View - Hide filter arrow for title colum*/
+#scriptWPQ3 > table > #js-listviewthead-WPQ3 > tr > th:nth-child(3) > div:nth-child(2) > div {
+display:none !important;
+
+
+}
+
+
+#scriptWPQ4 > table > #js-listviewthead-WPQ4 > tr > th:nth-child(3) > div:nth-child(2) > div {
+display:none !important;
+
+
+
+}
+
+#scriptWPQ5 > table > #js-listviewthead-WPQ5 > tr > th:nth-child(3) > div:nth-child(2) > div {
+display:none !important;
+
+
+
+}
+
+#scriptWPQ6 > table > #js-listviewthead-WPQ6 > tr > th:nth-child(3) > div:nth-child(2) > div {
+display:none !important;
+
+
+
+}
+
+#scriptWPQ7 > table > #js-listviewthead-WPQ7 > tr > th:nth-child(3) > div:nth-child(2) > div {
+display:none !important;
+
+}
+</style>
